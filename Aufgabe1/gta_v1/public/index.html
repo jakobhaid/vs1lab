@@ -26,14 +26,12 @@
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">add a new GeoTag
-                <label>Lattude:   <input type="text" name="text_field_name" placeholder="some number" /></label>
-                <label>Longitude:   <input type="text" name="text_field_email" placeholder="some number"/></label>
-                <label>Name:   <input type="text" name="password_field_name"  placeholder="e.g. Berlin"/></label>
-                <label>Hashtag:   <input type="text" name="password_field_name" placeholder="e.g. #ber" pattern="[A-Z][a-z]+"/></label>
+            <form id="tag-form" action="/tagging" method="post" name="add a new GeoTag">
+                <label>Lattude:   <input type="text" name="lattude_field" placeholder="some number" disabled id="lat"/></label>
+                <label>Longitude:   <input type="text" name="longitude_field" placeholder="some number" disabled id="long"/></label>
+                <label>Name:   <input type="text" name="password_field_name"  placeholder="e.g. Berlin" required id="name"/></label>
+                <label>Hashtag:   <input type="text" name="password_field_name" placeholder="e.g. #ber" pattern="[#][a-z]+" required id="hash"/></label>
                 <input type="submit" value="Add Tag" class="submit">
-                <!-- ... your code here ... -->
-
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
@@ -43,10 +41,9 @@
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-
-                <!-- ... your code here ... -->
-
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post" name="Search">
+                <label>Search term or keywords:   <input type="text" name="lattude_field" placeholder="e.g. berlin" required id="sTerm"/></label>
+                <input type="submit" value="Search" class="submit">
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
