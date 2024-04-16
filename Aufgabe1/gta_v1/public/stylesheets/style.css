@@ -145,40 +145,33 @@ a:hover {
 /* ### TODO ### Styles for Main Component */
 
 main {
+  margin: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%; 
-  padding: 10px;
+  background: #ccc;
 }
 
 
 /* ### TODO ### Styles for Tagging component */
 
 .main__tagging {
-  padding: 10px;
+  display: grid;
+  background: #aaa;
 }
-.main__tagging form {
-  display: flex;
-  flex-flow: column wrap;
-  margin: 10px;
-}
-.main__tagging form input {
+.main__tagging input{
   display: block;
 }
 
 /* ### TODO ### Styles for Discovery component */
 
 .main__discovery {
-  padding: 10px;
+  display: grid;
+  background: #888;
 }
-.main__discovery form {
-  display: flex;
-  flex-flow: column wrap;
-  margin: 10px;
-}
-.discovery__search input{
+.main__discovery input{
   display: block;
 }
-
 
 /* ### TODO ### Styles for Footer Component */
 
