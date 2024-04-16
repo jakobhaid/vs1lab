@@ -29,10 +29,10 @@
             <fieldset>
                 <legend>Add a new GeoTag</legend>
                 <form id="tag-form" action="/tagging" method="post">
-                    <label>Lattude:   <input type="text" placeholder="some number" disabled id="lat"/></label>
-                    <label>Longitude:   <input type="text" placeholder="some number" disabled id="long"/></label>
-                    <label>Name:   <input type="text" placeholder="e.g. Berlin" required id="name"/></label>
-                    <label>Hashtag:   <input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" required id="hash"/></label>
+                    <label>Lattude:  <input type="text" placeholder="some number" disabled id="latitude" value="12345678"/></label>
+                    <label>Longitude:<input type="text" placeholder="some number" disabled id="longitude" value="12345678"/></label>
+                    <label>Name:     <input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/></label>
+                    <label>Hashtag:  <input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/></label>
                     <input type="submit" value="Add Tag" class="submit">
                 </form>
             </fieldset>
@@ -47,7 +47,9 @@
             <fieldset>
                 <legend>Search</legend>
                 <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
-                    <label>Search term or keywords:   <input type="text" placeholder="e.g. berlin" required id="sTerm"/></label>
+                    <label>Search term or keywords:<input type="text" placeholder="e.g. berlin" required pattern="[A-Za-z]+" id="searchterm"/></label>
+                    <label><input type="hidden" id="sLatitude"  value="12345678"/></label>
+                    <label><input type="hidden" id="sLongitude" value="12345678"/></label>
                     <input type="submit" value="Search" class="submit">
                 </form>
             </fieldset>
@@ -67,7 +69,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer class="footer">

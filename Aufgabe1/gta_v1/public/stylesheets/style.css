@@ -46,7 +46,9 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+h2{
+  padding-bottom: 10px;
+}
 
 
 /* Grid styles (no changes required) */
@@ -109,29 +111,93 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
-
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  background: #000;
+  color: #fff;
+}
+header img {
+  width: 5%;
+  min-width: 30px;
+}
+a:link, a:active, a:visited {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 100;
+}
+a:hover {
+  color: #888;
+  font-weight: 100;
+}
+.header__title {
+  flex-grow: 2;
+  font-size:auto ;
+  font-weight: 800;
+}
 
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
+main {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%; 
+  padding: 10px;
+}
 
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
-
+.main__tagging {
+  padding: 10px;
+}
+.main__tagging form {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 10px;
+}
+.main__tagging form input {
+  display: block;
+}
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.main__discovery {
+  padding: 10px;
+}
+.main__discovery form {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 10px;
+}
+.discovery__search input{
+  display: block;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+footer {
+  margin-top: auto;
+
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background: #000;
+  color: #fff;
+}
 
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}
