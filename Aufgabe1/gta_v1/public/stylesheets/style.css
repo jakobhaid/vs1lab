@@ -172,6 +172,12 @@ main {
 .main__discovery input{
   display: block;
 }
+.discovery__map {
+  display:block;
+}
+.discovery__taglist ul {
+  display: table;
+}
 
 /* ### TODO ### Styles for Footer Component */
 
