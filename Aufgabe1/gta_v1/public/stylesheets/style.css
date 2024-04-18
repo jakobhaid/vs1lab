@@ -175,6 +175,8 @@ main {
 .discovery__taglist ul {
   display: table;
 }
+/* TODO Map darstellung */
+/* TODO Suchergebnise darstellung */
 
 /* ### TODO ### Styles for Footer Component */
 
@@ -189,17 +191,8 @@ footer {
 }
 
 
-/* ### TODO ### Media Queries test
-1
-2
-3
-*/
+/* ### TODO ### Media Queries test */
 
 @media (width: 750px) {
-  /*
-  Naaaa du?
-  Wer das liest ist doof
-
-  
-  */
+  /* TODO anpassung Display auf colum */
 }
