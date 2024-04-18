@@ -44,6 +44,7 @@ a {
   color: var(--link-color);
 }
 
+/* ### TODO ### Styles for other HTML elements */
 input {
   padding: 10px;
   margin-bottom: 10px;
@@ -52,10 +53,6 @@ input {
 fieldset {
   padding: 10px;
 }
-
-/* ### TODO ### Styles for other HTML elements */
-
-
 
 /* Grid styles (no changes required) */
 
@@ -150,22 +147,20 @@ a:hover {
 
 main {
   display: grid;
-  padding: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
   background: #ccc;
 }
-/* TODO input form größe ändern */
+
+#tag-form fieldset {
+  display: flex;
+  flex-direction: column;
+}
 
 /* ### TODO ### Styles for Tagging component */
 
 .main__tagging {
   background: #aaa;
 }
-#tag-form fieldset {
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* ### TODO ### Styles for Discovery component */
 
@@ -177,9 +172,18 @@ main {
 .main__discovery input{
   display: block;
 }
+ul li {
+  list-style-type: none;
+  padding: 10px;
+  border: 1px solid #000;
+  background: #ccc;
+}
+.discovery__map {
+  display: flex;
+  flex-direction: column;
+}
 
 /* TODO Map darstellung */
-/* TODO Suchergebnise darstellung */
 
 /* ### TODO ### Styles for Footer Component */
 
@@ -198,8 +202,12 @@ footer {
 @media only screen and (max-width: 720px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;}
+  .col-3{width: calc(33.33% - 1rem);}
+  .col-9{width: calc(66.66% - 1rem);}
 }
 @media only screen and (max-width: 450px) {
+  .col-3{width: 100%;}
+  .col-9{width: 100%;}
   .header{
     flex-direction: column;
   }
