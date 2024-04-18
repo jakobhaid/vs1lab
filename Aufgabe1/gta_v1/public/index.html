@@ -3,82 +3,78 @@
 <!-- File origin: VS1LAB A1a -->
 
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GeoTagApp</title>
+        <link rel="stylesheet" href="./stylesheets/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoTagApp</title>
-    <link rel="stylesheet" href="./stylesheets/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <body>
+        <header class="header row">
+            <img src="./images/location.png" class="header__image" alt="an image of a map and location">
+            <h1 class="header__title">GeoTagApp</h1>
+            <nav class="header__navigation">
+                <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+            </nav>
+        </header>
 
-<body>
-    <header class="header row">
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
-        <h1 class="header__title">GeoTagApp</h1>
-        <nav class="header__navigation">
-            <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
-        </nav>
-    </header>
+        <main class="main row">
+            <section class="main__tagging tagging col-4">
+                <h2>Tagging</h2>
 
-    <main class="main row">
-        <section class="main__tagging tagging col-4">
-            <h2>Tagging</h2>
+                <!-- ############### VS1Lab 1a Form 1 Start -->
+                <form id="tag-form" action="/tagging" method="post">
+                    <fieldset>
+                        <legend>Add a new GeoTag</legend>
+                        <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>
+                        <label for="longitude">Longitude:</label><input type="number" placeholder="some number" disabled id="longitude" value="12345678"/>
+                        <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/>
+                        <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/>
+                        <input type="submit" value="Add Tag" class="submit">
+                    </fieldset>
+                </form>
+                <!-- ############### VS1Lab 1a Form 1 End -->
 
-            <!-- ############### VS1Lab 1a Form 1 Start -->
-            
-            <form id="tag-form" action="/tagging" method="post">
-                <fieldset>
-                    <legend>Add a new GeoTag</legend>
-                    <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>
-                    <label for="longitude">Longitude:</label><input type="number" placeholder="some number" disabled id="longitude" value="12345678"/>
-                    <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/>
-                    <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/>
-                    <input type="submit" value="Add Tag" class="submit">
-                </fieldset>
-            </form>
-            <!-- ############### VS1Lab 1a Form 1 End -->
+            </section>
 
-        </section>
+            <section class="main__discovery discovery col-9"> <!-- solte eigentlich col-8 sein -->
+                <h2 class="discovery__title">Discovery</h2>
 
-        <section class="main__discovery discovery col-9"> <!-- solte eigentlich col-8 sein -->
-            <h2 class="discovery__title">Discovery</h2>
+                <!-- ############### VS1Lab 1a Form 2 Start -->
+                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
+                    <fieldset>
+                        <legend>Search</legend>
+                        <label for="searchterm">Search term or keywords:</label>
+                        <input type="text" placeholder="e.g. berlin" required pattern="[A-Za-z]+" id="searchterm"/>
+                        <label hidden for="sLatitude">sLatitude</label>
+                        <input type="hidden" id="sLatitude"  value="12345678"/>
+                        <label hidden for="sLongitude">sLongitude</label>
+                        <input type="hidden" id="sLongitude" value="12345678"/>
+                        <input type="submit" value="Search" class="submit">
+                    </fieldset>
+                </form>
+                <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <!-- ############### VS1Lab 1a Form 2 Start -->
-            
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
-                <fieldset>
-                    <legend>Search</legend>
-                    <label for="searchterm">Search term or keywords:</label>
-                    <input type="text" placeholder="e.g. berlin" required pattern="[A-Za-z]+" id="searchterm"/>
-                    <label hidden for="sLatitude">sLatitude</label>
-                    <input type="hidden" id="sLatitude"  value="12345678"/>
-                    <label hidden for="sLongitude">sLongitude</label>
-                    <input type="hidden" id="sLongitude" value="12345678"/>
-                    <input type="submit" value="Search" class="submit">
-                </fieldset>
-            </form>
-            <!-- ############### VS1Lab 1a Form 2 End -->
+                <div class="discovery__wrapper row">
+                    <div class="discovery__taglist col-4"> <!-- solte eigentlich col-3 sein -->
+                        <ul class="discovery__results" id="discoveryResults">
+                            <li>Castle (49.01379, 8.404435) #sight</li>
+                            <li>IWI (49.01379, 8.390071) #edu</li>
+                        </ul>
+                    </div>
 
-            <div class="discovery__wrapper row">
-                <div class="discovery__taglist col-4"> <!-- solte eigentlich col-3 sein -->
-                    <ul class="discovery__results" id="discoveryResults">
-                        <li>Castle (49.01379, 8.404435) #sight</li>
-                        <li>IWI (49.01379, 8.390071) #edu</li>
-                    </ul>
+                    <div class="discovery__map col-9">
+                        <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
+                        <span>Result map</span>
+                    </div>
                 </div>
+            </section>
+        </main>
 
-                <div class="discovery__map col-9">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
-                    <span>Result map</span>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <span>(c) 2021/22 HKA_IWI_VSYS</span>
-    </footer>
-</body>
-
+        <footer class="footer">
+            <span>(c) 2021/22 HKA_IWI_VSYS</span>
+        </footer>
+    </body>
 </html>

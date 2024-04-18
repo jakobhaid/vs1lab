@@ -19,8 +19,6 @@ html {
   /* This approach prevents issues with 3rd party content-box components */
   box-sizing: inherit;
 }
-
-
 /* Variables (example: see declaration for "a" below) */
 
 :root {
@@ -44,7 +42,7 @@ a {
   color: var(--link-color);
 }
 
-/* ### TODO ### Styles for other HTML elements */
+/* ### ### Styles for other HTML elements */
 input {
   padding: 10px;
   margin-bottom: 10px;
@@ -112,9 +110,7 @@ fieldset {
 }
 
 
-/* ### TODO ### Styles for Header Component 
-Hallo
-*/
+/* ###  ### Styles for Header Component */
 
 .header {
   flex: 0;
@@ -143,7 +139,7 @@ a:hover {
   min-width: 30px;
 }
 
-/* ### TODO ### Styles for Main Component */
+/* ###  ### Styles for Main Component */
 
 main {
   display: grid;
@@ -155,14 +151,14 @@ main {
   flex-direction: column;
 }
 
-/* ### TODO ### Styles for Tagging component */
+/* ###  ### Styles for Tagging component */
 
 .main__tagging {
   background: #aaa;
 }
 
 
-/* ### TODO ### Styles for Discovery component */
+/* ###  ### Styles for Discovery component */
 
 .main__discovery {
   background: #888;
@@ -187,9 +183,7 @@ ul li {
   max-width: 500px;
 }
 
-/* TODO Map darstellung */
-
-/* ### TODO ### Styles for Footer Component */
+/* ###  ### Styles for Footer Component */
 
 footer {
   margin-top: auto;
@@ -202,7 +196,7 @@ footer {
 }
 
 
-/* ### TODO ### Media Queries */
+/* ###  ### Media Queries */
 @media only screen and (max-width: 750px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;}
