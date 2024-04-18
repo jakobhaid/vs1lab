@@ -22,37 +22,42 @@
     </header>
 
     <main class="main row">
-        <section class="main__tagging tagging col-3">
+        <section class="main__tagging tagging col-4">
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
-            <fieldset>
-                <legend>Add a new GeoTag</legend>
-                <form id="tag-form" action="/tagging" method="post">
-                    <label>Lattude:  <input type="number" placeholder="some number" disabled id="latitude" value="12345678"/></label>
-                    <label>Longitude:<input type="number" placeholder="some number" disabled id="longitude" value="12345678"/></label>
-                    <label>Name:     <input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/></label>
-                    <label>Hashtag:  <input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/></label>
+            
+            <form id="tag-form" action="/tagging" method="post">
+                <fieldset>
+                    <legend>Add a new GeoTag</legend>
+                    <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>
+                    <label for="longitude">Longitude:</label><input type="number" placeholder="some number" disabled id="longitude" value="12345678"/>
+                    <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/>
+                    <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/>
                     <input type="submit" value="Add Tag" class="submit">
-                </form>
-            </fieldset>
+                </fieldset>
+            </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
         </section>
 
-        <section class="main__discovery discovery col-9">
+        <section class="main__discovery discovery col-8">
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <fieldset>
-                <legend>Search</legend>
-                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
-                    <label>Search term or keywords:<input type="text" placeholder="e.g. berlin" required pattern="[A-Za-z]+" id="searchterm"/></label>
-                    <label><input type="hidden" id="sLatitude"  value="12345678"/></label>
-                    <label><input type="hidden" id="sLongitude" value="12345678"/></label>
+            
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
+                <fieldset>
+                    <legend>Search</legend>
+                    <label for="searchterm">Search term or keywords:</label>
+                    <input type="text" placeholder="e.g. berlin" required pattern="[A-Za-z]+" id="searchterm"/>
+                    <label hidden for="sLatitude">sLatitude</label>
+                    <input type="hidden" id="sLatitude"  value="12345678"/>
+                    <label hidden for="sLongitude">sLongitude</label>
+                    <input type="hidden" id="sLongitude" value="12345678"/>
                     <input type="submit" value="Search" class="submit">
-                </form>
-            </fieldset>
+                </fieldset>
+            </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
             <div class="discovery__wrapper row">

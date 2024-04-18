@@ -44,6 +44,15 @@ a {
   color: var(--link-color);
 }
 
+input {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  padding: 10px;
+}
+
 /* ### TODO ### Styles for other HTML elements */
 
 
@@ -153,24 +162,22 @@ main {
 .main__tagging {
   background: #aaa;
 }
-.main__tagging input{
-  display: block;
+#tag-form fieldset {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ### TODO ### Styles for Discovery component */
 
 .main__discovery {
   background: #888;
+  display: flex;
+  flex-direction: column;
 }
 .main__discovery input{
   display: block;
 }
-.discovery__map {
-  display: block;
-}
-.discovery__taglist ul {
-  display: table;
-}
+
 /* TODO Map darstellung */
 /* TODO Suchergebnise darstellung */
 
@@ -187,24 +194,16 @@ footer {
 }
 
 
-/* ### TODO ### Media Queries test */
-
-@media only screen and (max-width: 600px) {
-  /* TODO anpassung Display auf colum */
-  .header{display: grid;}
-
-
-  /*[class*="col-"] {width: 100%;}*/
-  .col-1 {width: 100%;}
-  .col-2 {width: 100%;}
-  .col-3 {width: 100%;}
-  .col-4 {width: 100%;}
-  .col-5 {width: 100%;}
-  .col-6 {width: 100%;}
-  .col-7 {width: 100%;}
-  .col-8 {width: 100%;}
-  .col-9 {width: 100%;}
-  .col-10 {width: 100%;}
-  .col-11 {width: 100%;}
-  .col-12 {width: 100%;}
+/* ### TODO ### Media Queries */
+@media only screen and (max-width: 720px) {
+  .main {flex-direction: column;}
+  [class*="col-"] {width: 100%;}
+}
+@media only screen and (max-width: 450px) {
+  .header{
+    flex-direction: column;
+  }
+  .discovery__wrapper {
+    flex-direction: column;
+  }
 }
