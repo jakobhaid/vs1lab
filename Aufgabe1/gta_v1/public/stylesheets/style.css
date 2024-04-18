@@ -182,6 +182,10 @@ ul li {
   display: flex;
   flex-direction: column;
 }
+#mapView {
+  max-height: 500px;
+  max-width: 500px;
+}
 
 /* TODO Map darstellung */
 
