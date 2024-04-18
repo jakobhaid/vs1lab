@@ -189,8 +189,6 @@ footer {
 
 /* ### TODO ### Media Queries */
 
-@media only screen and (max-width: 768px) {
-  [class*="col-"] {
-    width: 100%;
-  }
+@media (width: 750px) {
+  
 }
