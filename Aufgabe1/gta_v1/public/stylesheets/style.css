@@ -46,9 +46,7 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-h2{
-  padding-bottom: 10px;
-}
+
 
 /* Grid styles (no changes required) */
 
@@ -153,7 +151,6 @@ main {
 /* ### TODO ### Styles for Tagging component */
 
 .main__tagging {
-  display: grid;
   background: #aaa;
 }
 .main__tagging input{
@@ -163,7 +160,6 @@ main {
 /* ### TODO ### Styles for Discovery component */
 
 .main__discovery {
-  display: grid;
   background: #888;
 }
 .main__discovery input{
@@ -193,6 +189,22 @@ footer {
 
 /* ### TODO ### Media Queries test */
 
-@media (width: 750px) {
+@media only screen and (max-width: 600px) {
   /* TODO anpassung Display auf colum */
+  .header{display: grid;}
+
+
+  /*[class*="col-"] {width: 100%;}*/
+  .col-1 {width: 100%;}
+  .col-2 {width: 100%;}
+  .col-3 {width: 100%;}
+  .col-4 {width: 100%;}
+  .col-5 {width: 100%;}
+  .col-6 {width: 100%;}
+  .col-7 {width: 100%;}
+  .col-8 {width: 100%;}
+  .col-9 {width: 100%;}
+  .col-10 {width: 100%;}
+  .col-11 {width: 100%;}
+  .col-12 {width: 100%;}
 }
