@@ -112,9 +112,7 @@ h2{
 /* ### TODO ### Styles for Header Component */
 
 .header {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  display: grid;
   align-items: center;
   padding: 10px;
   padding-left: 30px;
