@@ -199,15 +199,15 @@ footer {
 
 
 /* ### TODO ### Media Queries */
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 750px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;}
-  .col-3{width: calc(33.33% - 1rem);}
-  .col-9{width: calc(66.66% - 1rem);}
+  .discovery__taglist{width: calc(41.66% - 1rem);} /* solte eigentlich "width: calc(41.66% - 1rem);" sein*/
+  .discovery__map{width: calc(66.66% - 1rem);}
 }
 @media only screen and (max-width: 450px) {
-  .col-3{width: 100%;}
-  .col-9{width: 100%;}
+  .discovery__taglist{width: 100%;}
+  .discovery__map{width: 100%;}
   .header{
     flex-direction: column;
   }
