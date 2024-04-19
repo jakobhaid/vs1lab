@@ -140,7 +140,6 @@ label{
   color: #fff;
 }
 .header__title {
-  font-size: auto;
   font-weight: 200;
 }
 .header img{
@@ -161,7 +160,6 @@ a:hover {
 /* ###  ### Styles for Main Component */
 
 main {
-  display: grid;
 }
 
 /* ###  ### Styles for Tagging component */
@@ -212,7 +210,6 @@ ul li {
 
 footer {
   margin-top: auto;
-
   padding: 10px;
   padding-left: 30px;
   padding-right: 30px;
@@ -220,16 +217,15 @@ footer {
   color: #fff;
 }
 
-
 /* ###  ### Media Queries */
-@media only screen and (max-width: 750px) {
+@media (max-width: 750px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;}
   .discovery__taglist{width: calc(41.66% - 1rem);} /* solte eigentlich "width: calc(41.66% - 1rem);" sein*/
   .discovery__map{width: calc(66.66% - 1rem);}
   .main__tagging {padding-right: 10px;}
 }
-@media only screen and (max-width: 450px) {
+@media (max-width: 450px) {
   .discovery__taglist{width: 100%;}
   .discovery__map{width: 100%;}
   .header{
