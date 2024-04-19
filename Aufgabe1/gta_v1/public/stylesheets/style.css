@@ -13,6 +13,7 @@ html {
 }
 
 * {
+  font-family: "IBM Plex Mono", sans-serif;
   margin: 0;
   padding: 0;
 
@@ -30,26 +31,44 @@ html {
 
 
 /* HTML element styles */
-
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-a {
-  color: var(--link-color);
-}
-
 /* ### ### Styles for other HTML elements */
+input:not(.submit) {
+  margin-bottom: 10px;
+}
 input {
   padding: 10px;
-  margin-bottom: 10px;
+  border-radius: 0px;
+  border: 1px solid #000;
+}
+.submit {
+  background-color: #000;
+  color: #fff;
+  transition: 0.3s;
+}
+.submit:hover {
+  background-color: #fff;
+  border: 1px solid #000;
+  color: #000;
+  cursor: pointer;
 }
 
 fieldset {
   padding: 10px;
+  border: 1px solid #000;
+}
+
+h2 {
+  padding-left: 10px;
+}
+
+label{
+  padding-bottom: 2px;
 }
 
 /* Grid styles (no changes required) */
@@ -117,70 +136,76 @@ fieldset {
   height: 100px;
   align-items: center;
   padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
   background: #000;
   color: #fff;
 }
-a:link, a:active, a:visited {
-  color: #fff;
-  font-weight: 100;
-}
-a:hover {
-  color: #888;
-  font-weight: 100;
-}
 .header__title {
   font-size: auto;
-  font-weight: 800;
+  font-weight: 200;
 }
 .header img{
-  width: 5%;
+  width: 40px;
   min-width: 30px;
+  filter: grayscale();
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+a:hover {
+  color: #aaa;
 }
 
 /* ###  ### Styles for Main Component */
 
 main {
   display: grid;
-  background: #ccc;
-}
-
-#tag-form fieldset {
-  display: flex;
-  flex-direction: column;
 }
 
 /* ###  ### Styles for Tagging component */
 
 .main__tagging {
-  background: #aaa;
+  padding: 10px;
+  padding-right: 0px;
 }
-
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
 
 /* ###  ### Styles for Discovery component */
 
 .main__discovery {
-  background: #888;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 .main__discovery input{
   display: block;
 }
+.discovery__results{
+  padding: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 ul li {
   list-style-type: none;
   padding: 10px;
   border: 1px solid #000;
-  background: #ccc;
+  margin-bottom: 10px;
 }
 .discovery__map {
+  filter: grayscale();
+  padding: 10px;
+  padding-right: 0px;
   display: flex;
   flex-direction: column;
 }
 #mapView {
-  max-height: 500px;
-  max-width: 500px;
+  max-height: 400px;
+  max-width: 400px;
 }
 
 /* ###  ### Styles for Footer Component */
@@ -202,6 +227,7 @@ footer {
   [class*="col-"] {width: 100%;}
   .discovery__taglist{width: calc(41.66% - 1rem);} /* solte eigentlich "width: calc(41.66% - 1rem);" sein*/
   .discovery__map{width: calc(66.66% - 1rem);}
+  .main__tagging {padding-right: 10px;}
 }
 @media only screen and (max-width: 450px) {
   .discovery__taglist{width: 100%;}
