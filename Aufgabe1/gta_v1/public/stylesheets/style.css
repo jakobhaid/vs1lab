@@ -6,8 +6,6 @@
   Inherited box sizing used for ease of including 3rd party content-box components.
 */
 
-/* Color: #F26101 #FFFFFF #D9E8F5 #91BED4 #304269 */
-
 /* Global styling */
 
 html {
@@ -15,13 +13,13 @@ html {
 }
 
 * {
-  font-family: "IBM Plex Mono", sans-serif;
   margin: 0;
   padding: 0;
 
   /* This approach prevents issues with 3rd party content-box components */
   box-sizing: inherit;
 }
+
 /* Variables (example: see declaration for "a" below) */
 
 :root {
@@ -34,10 +32,10 @@ html {
 
 /* HTML element styles */
 body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  border-radius: 5px;
 }
 
 /* ### ### Styles for other HTML elements */
@@ -46,26 +44,10 @@ input:not(.submit) {
 }
 input {
   padding: 10px;
-  border: 1px solid #304269;
-}
-.submit {
-  background-color: #304269;
-  color: #fff;
-  transition: 0.3s;
-}
-.submit:hover {
-  background-color: #D9E8F5;
-  border: 1px solid #F26101;
-  color: #F26101;
-  box-shadow:0px 0px 0px 3px #F26101 inset;
-  cursor: pointer;
-  font-weight: 800;
 }
 
 fieldset {
   padding: 10px;
-  border: 2px solid #304269;
-  background-color: #D9E8F5;
 }
 fieldset > legend {
   padding-left: 5px;
@@ -145,7 +127,7 @@ label{
   height: 100px;
   align-items: center;
   padding: 10px;
-  background: #304269;
+  background: #000;
   color: #fff;
 }
 .header__title {
@@ -159,11 +141,9 @@ label{
 a {
   color: #fff;
   text-decoration: none;
-  transition: 0.3s;
 }
 a:hover {
-  color: #F26101;
-  font-weight: 800;
+  color: #bbb;
 }
 
 /* ###  ### Styles for Main Component */
@@ -199,7 +179,7 @@ ul li {
   list-style-type: none;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #91BED4;
+  border: 1px solid #000;
 }
 .discovery__map {
   padding: 10px;
@@ -217,9 +197,7 @@ ul li {
 footer {
   margin-top: auto;
   padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  background: #304269;
+  background: #000;
   color: #fff;
 }
 
