@@ -37,7 +37,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  border-radius: 5px;
 }
 
 /* ### ### Styles for other HTML elements */
@@ -46,7 +45,7 @@ input:not(.submit) {
 }
 input {
   padding: 10px;
-  border: 1px solid #304269;
+  border: none;
 }
 .submit {
   background-color: #304269;
@@ -55,7 +54,6 @@ input {
 }
 .submit:hover {
   background-color: #D9E8F5;
-  border: 1px solid #F26101;
   color: #F26101;
   box-shadow:0px 0px 0px 3px #F26101 inset;
   cursor: pointer;
@@ -217,8 +215,6 @@ ul li {
 footer {
   margin-top: auto;
   padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
   background: #304269;
   color: #fff;
 }
