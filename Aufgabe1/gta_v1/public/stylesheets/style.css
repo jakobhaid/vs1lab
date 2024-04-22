@@ -168,8 +168,6 @@ a:hover {
 
 /* ###  ### Styles for Main Component */
 
-main {
-}
 
 /* ###  ### Styles for Tagging component */
 
@@ -229,7 +227,7 @@ footer {
 @media (max-width: 750px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;}
-  .discovery__taglist{width: calc(41.66% - 1rem);} /* solte eigentlich "width: calc(41.66% - 1rem);" sein*/
+  .discovery__taglist{width: calc(41.66% - 1rem);}
   .discovery__map{width: calc(66.66% - 1rem);}
   .main__tagging {padding-right: 10px;}
 }
