@@ -118,7 +118,14 @@ class MapManager {
  */
 // ... your code here ...
 
+function updateLocation(){
+    //kordinaten einlesen, call back function
+    //Karte (alt) löschen
+    //neue Karte laden
+}
+
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
     alert("Please change the script 'geotagging.js'");
+    updateLocation()
 });
