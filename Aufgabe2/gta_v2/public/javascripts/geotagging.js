@@ -118,6 +118,11 @@ class MapManager {
  */
 // ... your code here ...
 
+/*
+Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschrieben hab?
+*/
+
+
 function updateLocation(){
     //kordinaten einlesen, call back function
     //Karte (alt) löschen
