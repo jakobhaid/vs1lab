@@ -40,27 +40,45 @@ body {
 
 /* ### ### Styles for other HTML elements */
 input:not(.submit) {
-  margin-bottom: 10px;
+  margin-bottom: 10px;              
 }
+/*  
+    Alle Imput Elemente, die nicht aus der Klasse submit sind,
+    haben 10 Pixel Abstand unter der Box            */
+
+
 input {
-  padding: 10px;
+  padding: 10px;                    
 }
+/* 
+Abstand zwischen Input und Boxrand beträgt 10 Pixel                 */
 
 fieldset {
-  padding: 10px;
+  padding: 10px;                    
 }
+/*   
+Abstand zwischen Gruppe der Labels und Boxrand ist 10 Pixel               */
+
 fieldset > legend {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 5px;               
+  padding-right: 5px;               
 }
+/*   
+  Es werden legenden ausgesucht, die in einem Fieldset sind
+  Abstand von imput zu rand beträgt rechts und links 5 Pixel            */
+
 
 h2 {
-  padding-left: 10px;
+  padding-left: 10px;               
 }
+/*  
+  Imput hat bei Überschrift 2 einen Abstand von 10 Pixel zum linken Rand              */
 
 label{
-  padding-bottom: 2px;
+  padding-bottom: 2px;              
 }
+/*
+Die Labens haben nach unten einen Abstand von 2 Pixeln                */
 
 /* Grid styles (no changes required) */
 
@@ -151,71 +169,110 @@ a:hover {
 
 /* ###  ### Styles for Tagging component */
 
-.main__tagging {
+.main__tagging {                                          
   padding: 10px;
   padding-right: 0px;
 }
-fieldset {
+/*    
+  Klasse main_tagging hat einen Abstand von Labels
+  zum definierten Rand von 10px, der rechte Rand hat explizit keinen Abstand
+             */
+
+fieldset {                                         
   display: flex;
   flex-direction: column;
 }
+/*        
+  Fieldsets sollen flexible Container sein, Inhalte sollen frei verschiebbar sein
+  Labels sollen untereinander angeordnet werden.
+          */
 
 /* ###  ### Styles for Discovery component */
 
-.main__discovery {
+.main__discovery {                                         
   padding: 10px;
-  display: flex;
-  flex-direction: column;
+  display: flex;                                          
+  flex-direction: column;                                          
 }
+/*   
+(siehe fieldset)               */
+
 .main__discovery input{
-  display: block;
+  display: block;                                          
 }
+/*               
+  Elemente nehmen gesamte Breite einer Box in Anspruch */
+
 .discovery__results{
-  padding: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 10px;                                          
+  padding-left: 0px;                                          
+  padding-right: 0px;                                         
 }
+
+
 ul li {
-  list-style-type: none;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #000;
+  list-style-type: none;                                          
+  padding: 10px;                                          
+  margin-bottom: 10px;                                       
+  border: 1px solid #000;                                          
 }
-.discovery__map {
-  padding: 10px;
-  padding-right: 0px;
-  display: flex;
-  flex-direction: column;
+/* 
+Punkte bei Liste werden entfernt.
+Reiner Text bleibt
+*/
+
+.discovery__map {                                    
+  padding: 10px;                                         
+  padding-right: 0px;                                          
+  display: flex;                                     
+  flex-direction: column;                                     
 }
+              
+
 #mapView {
-  max-height: 400px;
-  max-width: 400px;
+  max-height: 400px;                                    
+  max-width: 400px;                                   
 }
+/*                  */
+
 
 /* ###  ### Styles for Footer Component */
 
-footer {
-  margin-top: auto;
-  padding: 10px;
-  background: #000;
-  color: #fff;
+footer {                                              
+  margin-top: auto;                                       
+  padding: 10px;                                       
+  background: #000;                                       
+  color: #fff;                                    
 }
+/*  
+Abstand nach oben wird automatisch berechnet  
+              */
+
 
 /* ###  ### Media Queries */
-@media (max-width: 750px) {
-  .main {flex-direction: column;}
-  [class*="col-"] {width: 100%;}
-  .discovery__taglist{width: calc(41.66% - 1rem);}
-  .discovery__map{width: calc(66.66% - 1rem);}
-  .main__tagging {padding-right: 10px;}
+@media (max-width: 750px) {                                     
+  .main {flex-direction: column;}                               
+  [class*="col-"] {width: 100%;}                                
+  .discovery__taglist{width: calc(41.66% - 1rem);}              
+  .discovery__map{width: calc(66.66% - 1rem);}                  
+  .main__tagging {padding-right: 10px;}                         
 }
-@media (max-width: 450px) {
-  .discovery__taglist{width: 100%;}
-  .discovery__map{width: 100%;}
-  .header{
-    flex-direction: column;
+/*     
+  Gilt für Bildschirme einer Breite von 750 oder weniger Pixeln
+  
+  
+  
+  
+  */
+
+@media (max-width: 450px) {                       
+  .discovery__taglist{width: 100%;}               
+  .discovery__map{width: 100%;}                   
+  .header{                                        
+    flex-direction: column;                       
   }
-  .discovery__wrapper {
-    flex-direction: column;
+  .discovery__wrapper {                           
+    flex-direction: column;                       
   }
 }
+/*                  */
