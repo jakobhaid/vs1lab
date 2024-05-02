@@ -128,4 +128,5 @@ function updateLocation(){
 document.addEventListener("DOMContentLoaded", () => {
     alert("Please change the script 'geotagging.js'");
     updateLocation()
+    console.log("hallo World")
 });
