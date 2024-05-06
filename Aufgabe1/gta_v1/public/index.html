@@ -4,6 +4,9 @@
 
 <html lang="en">
     <head>
+        <!-- Leaflet CSS and JavaScript (in this order) -->
+        <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GeoTagApp</title>
@@ -29,54 +32,49 @@
                 <!-- ############### VS1Lab 1a Form 1 Start -->
                 <form id="tag-form" action="/tagging" method="post">            
                     <!--    
-                            id= eindeutige Kennung für dieses Formular (damit man mit z.B. JavaSkript oder CSS drauf zugreifen kann)
-                            action= Gibt URL (bzw. den Pfad) an, an den Formulardaten gesendet werden sollen
-                            method= gibt an welche Methode zum Versenden der Daten genutzt werden soll.
-                            post= Name-Wert Paar in der URL nicht sichtbar
-                                  Unbegrenzte Länge der URL
-                        -->
+                    id= eindeutige Kennung für dieses Formular (damit man mit z.B. JavaSkript oder CSS drauf zugreifen kann)
+                    action= Gibt URL (bzw. den Pfad) an, an den Formulardaten gesendet werden sollen
+                    method= gibt an welche Methode zum Versenden der Daten genutzt werden soll.
+                    post= Name-Wert Paar in der URL nicht sichtbar
+                          Unbegrenzte Länge der URL
+                    -->
                     <fieldset>                                                  
                         <!--  
-                            Verwendet um Elemente in Formular visuell zu sortieren
-                            Gruppiert Formularelemente
+                        Verwendet um Elemente in Formular visuell zu sortieren
+                        Gruppiert Formularelemente
                         -->
                         <legend>Add a new GeoTag</legend>                      
-                         <!--   
-                            Titel für den (zusammengehörigen) Abschnitt  
-                          -->
+                        <!--   
+                        Titel für den (zusammengehörigen) Abschnitt  
+                        -->
                         <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>           
                         <!--  
-                            label= Es wird ein Feld mit dem Namen Latitude erstellt
-                                   id gibt wieder eindeutige Kennung für dieses Label an
+                        label= Es wird ein Feld mit dem Namen Latitude erstellt
+                                id gibt wieder eindeutige Kennung für dieses Label an
 
-                            input= Erfasst Benutzereingabe
-                            type= hier werden nur Zahlen als Eingabe akzeptiert
-                            placeholder= Platzhalter, zeigt nur, welche Art von Daten erwartet werden
-                            disabled= deaktiviert Eingabefeld, nutzer kann es nicht bearbeiten/auswählen
-                            id= id von label
-                            value= Gibt einen Wert in das Feld ein
-
-
-
-
-
-                         -->
+                        input= Erfasst Benutzereingabe
+                        type= hier werden nur Zahlen als Eingabe akzeptiert
+                        placeholder= Platzhalter, zeigt nur, welche Art von Daten erwartet werden
+                        disabled= deaktiviert Eingabefeld, nutzer kann es nicht bearbeiten/auswählen
+                        id= id von label
+                        value= Gibt einen Wert in das Feld ein
+                        -->
                         <label for="longitude">Longitude:</label><input type="number" placeholder="some number" disabled id="longitude" value="12345678"/>
                         <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" pattern="[A-Za-z]+" required id="name" maxlength="10"/>
                         <!-- 
-                            required= dieses Feld muss ausgefüllt sein
-                            maxlength= können maximal 10 char eingegeben werden
+                        required= dieses Feld muss ausgefüllt sein
+                        maxlength= können maximal 10 char eingegeben werden
                         -->
                         <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="11" id="hashtag"/>
                         <!-- 
-                            pattern= muss mit # anfangen, dann mindestens 1 Buchstabe folgen
+                        pattern= muss mit # anfangen, dann mindestens 1 Buchstabe folgen
                         -->
                         <input type="submit" value="Add Tag" class="submit">
                         <!-- 
-                            submit= schaltfläche kann verwendet werden um formular abzuschicken
-                            class= weist der Schaltfläche eine Klasse namens "submit" 
-                            (Um bspw. mit JavaSkript oder CSS zu interagieren)
-                            Im gegensatz zu id nicht eindeutig, kann also mehrfach in document benutzt werden
+                        submit= schaltfläche kann verwendet werden um formular abzuschicken
+                        class= weist der Schaltfläche eine Klasse namens "submit" 
+                        (Um bspw. mit JavaSkript oder CSS zu interagieren)
+                        Im gegensatz zu id nicht eindeutig, kann also mehrfach in document benutzt werden
                         -->
                     </fieldset>
                 </form>
@@ -84,13 +82,13 @@
 
             </section>
 
-            <section class="main__discovery discovery col-9"> <!-- solte eigentlich col-8 sein -->
+            <section class="main__discovery discovery col-8">
                 <h2 class="discovery__title">Discovery</h2>
 
                 <!-- ############### VS1Lab 1a Form 2 Start -->
                 <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
                     <!-- 
-                        Wieso hier Class und ID?
+                    Wieso hier Class und ID?
                     -->
                     <fieldset>
                         <legend>Search</legend>
@@ -106,7 +104,7 @@
                 <!-- ############### VS1Lab 1a Form 2 End -->
 
                 <div class="discovery__wrapper row">
-                    <div class="discovery__taglist col-4"> <!-- solte eigentlich col-3 sein -->
+                    <div class="discovery__taglist col-3">
                         <ul class="discovery__results" id="discoveryResults">
                             <li>Castle (49.01379, 8.404435) #sight</li>
                             <li>IWI (49.01379, 8.390071) #edu</li>
@@ -124,5 +122,10 @@
         <footer class="footer">
             <span>(c) 2021/22 HKA_IWI_VSYS</span>
         </footer>
+
+        <!-- Load JavaScripts
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="./javascripts/geotagging.js"></script>
     </body>
 </html>
