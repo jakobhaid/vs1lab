@@ -10,9 +10,7 @@
 
 /* Global styling */
 
-html {
-  box-sizing: border-box;
-}
+html {box-sizing: border-box;}
 
 * {
   font-family: "IBM Plex Mono", sans-serif;
@@ -40,9 +38,7 @@ body {
 }
 
 /* ### ### Styles for other HTML elements */
-input:not(.submit) {
-  margin-bottom: 10px;
-}
+input:not(.submit) {margin-bottom: 10px;}
 input {
   padding: 10px;
   border: none;
@@ -70,13 +66,9 @@ fieldset > legend {
   padding-right: 5px;
 }
 
-h2 {
-  padding-left: 10px;
-}
+h2 {padding-left: 10px;}
 
-label{
-  padding-bottom: 2px;
-}
+label{padding-bottom: 2px;}
 
 /* Grid styles (no changes required) */
 
@@ -87,53 +79,18 @@ label{
   flex: 1;
 }
 
-.col-1 {
-  width: calc(8.33%);
-}
-
-.col-2 {
-  width: calc(16.66%);
-}
-
-.col-3 {
-  width: calc(25%);
-}
-
-.col-4 {
-  width: calc(33.33%);
-}
-
-.col-5 {
-  width: calc(41.66%);
-}
-
-.col-6 {
-  width: calc(50%);
-}
-
-.col-7 {
-  width: calc(58.33%);
-}
-
-.col-8 {
-  width: calc(66.66%);
-}
-
-.col-9 {
-  width: calc(75%);
-}
-
-.col-10 {
-  width: calc(83.33%);
-}
-
-.col-11 {
-  width: calc(91.66%);
-}
-
-.col-12 {
-  width: calc(100%);
-}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 { width: 100%;}
 
 
 /* ###  ### Styles for Header Component */
@@ -146,9 +103,7 @@ label{
   background: #304269;
   color: #fff;
 }
-.header__title {
-  font-weight: 200;
-}
+.header__title {font-weight: 200;}
 .header img{
   width: 40px;
   min-width: 30px;
@@ -185,29 +140,34 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
-.main__discovery input{
-  display: block;
-}
+.main__discovery input{display: block;}
 ul li {
   list-style-type: none;
   padding: 10px;
   margin-top: 10px;
   background-color: #91BED4;
 }
+ul li:first-child {margin-top: 0px;}
+
+.discovery__wrapper{padding-top: 10px;}
 .discovery__map {
-  padding: 10px;
-  padding-right: 0px;
-  padding-bottom: 0px;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
 }
 .discovery__taglist{
-  overflow: scroll;
-  height: 100%;
+  overflow: auto;
+  max-height: calc(100vh - 315px);
+  min-height: 199px;
 }
+
 #mapView {
-  max-height: 400px;
+  max-height: calc(100vh - 315px);
   width: 100%;
+}
+#map { 
+  height: 100%;
+  min-height: 190px;
 }
 
 /* ###  ### Styles for Footer Component */
@@ -223,24 +183,20 @@ footer {
 @media (max-width: 750px) {
   .main {flex-direction: column;}
   [class*="col-"] {width: 100%;} 
-  .discovery__taglist{width: calc(41.66%);}
-  .discovery__map{width: calc(66.66%);}
+  .discovery__taglist{width: 41.66%;}
+  .discovery__map{width: 66.66%;}
   .main__tagging {padding-right: 10px;}
   #mapView {max-width: none; max-height: none;}
 }
 /*
-  Gilt für Bildschirme einer Breite von 750 oder weniger Pixeln
+  Gilt für Bildschirme einer Breite von 750px oder weniger
 */
 
 @media (max-width: 450px) {
-  .discovery__taglist{width: 100%;}
+  .discovery__taglist{width: 100%; padding-bottom: 10px;}
   .discovery__map{width: 100%; padding-left: 0px; padding-top: 0px;}
   .header{flex-direction: column;}
   .discovery__wrapper {flex-direction: column;}
+  #map { min-height: 300px;}
 }
 /*    */
-
-#map { 
-  height: 100%;
-  margin-top: auto; 
-}
