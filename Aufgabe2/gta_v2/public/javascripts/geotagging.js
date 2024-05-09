@@ -81,13 +81,12 @@ class MapManager {
     * @param {number} longitude The map center longitude
     * @param {number} zoom The map zoom, defaults to 18
     */
-    initMap(latitude, longitude, zoom = 18) {
+    initMap(latitude, longitude, zoom = 16) {
         // set up dynamic Leaflet map
         this.#map = L.map('map').setView([latitude, longitude], zoom);
         var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors'}).addTo(this.#map);
+        // map style found on: https://leaflet-extras.github.io/leaflet-providers/preview/
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', ext: 'png'}).addTo(this.#map);
         this.#markers = L.layerGroup().addTo(this.#map);
     }
 
