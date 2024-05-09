@@ -27,25 +27,66 @@
                 <h2>Tagging</h2>
 
                 <!-- ############### VS1Lab 1a Form 1 Start -->
-                <form id="tag-form" action="/tagging" method="post">
-                    <fieldset>
-                        <legend>Add a new GeoTag</legend>
-                        <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>
+                <form id="tag-form" action="/tagging" method="post">            
+                    <!--    
+                    id= eindeutige Kennung für dieses Formular (damit man mit z.B. JavaSkript oder CSS drauf zugreifen kann)
+                    action= Gibt URL (bzw. den Pfad) an, an den Formulardaten gesendet werden sollen
+                    method= gibt an welche Methode zum Versenden der Daten genutzt werden soll.
+                    post= Name-Wert Paar in der URL nicht sichtbar
+                          Unbegrenzte Länge der URL
+                    -->
+                    <fieldset>                                                  
+                        <!--  
+                        Verwendet um Elemente in Formular visuell zu sortieren
+                        Gruppiert Formularelemente
+                        -->
+                        <legend>Add a new GeoTag</legend>                      
+                        <!--   
+                        Titel für den (zusammengehörigen) Abschnitt  
+                        -->
+                        <label for="latitude">Lattude:   </label><input type="number" placeholder="some number" disabled id="latitude" value="12345678"/>           
+                        <!--  
+                        label= Es wird ein Feld mit dem Namen Latitude erstellt
+                                id gibt wieder eindeutige Kennung für dieses Label an
+
+                        input= Erfasst Benutzereingabe
+                        type= hier werden nur Zahlen als Eingabe akzeptiert
+                        placeholder= Platzhalter, zeigt nur, welche Art von Daten erwartet werden
+                        disabled= deaktiviert Eingabefeld, nutzer kann es nicht bearbeiten/auswählen
+                        id= id von label
+                        value= Gibt einen Wert in das Feld ein
+                        -->
                         <label for="longitude">Longitude:</label><input type="number" placeholder="some number" disabled id="longitude" value="12345678"/>
-                        <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" required id="name" maxlength="10"/>
-                        <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="10" id="hashtag"/>
+                        <label for="name">Name:          </label><input type="text" placeholder="e.g. Berlin" pattern="[A-Za-z]+" required id="name" maxlength="10"/>
+                        <!-- 
+                        required= dieses Feld muss ausgefüllt sein
+                        maxlength= können maximal 10 char eingegeben werden
+                        -->
+                        <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="11" id="hashtag"/>
+                        <!-- 
+                        pattern= muss mit # anfangen, dann mindestens 1 Buchstabe folgen
+                        -->
                         <input type="submit" value="Add Tag" class="submit">
+                        <!-- 
+                        submit= schaltfläche kann verwendet werden um formular abzuschicken
+                        class= weist der Schaltfläche eine Klasse namens "submit" 
+                        (Um bspw. mit JavaSkript oder CSS zu interagieren)
+                        Im gegensatz zu id nicht eindeutig, kann also mehrfach in document benutzt werden
+                        -->
                     </fieldset>
                 </form>
                 <!-- ############### VS1Lab 1a Form 1 End -->
 
             </section>
 
-            <section class="main__discovery discovery col-9"> <!-- solte eigentlich col-8 sein -->
+            <section class="main__discovery discovery col-8">
                 <h2 class="discovery__title">Discovery</h2>
 
                 <!-- ############### VS1Lab 1a Form 2 Start -->
                 <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
+                    <!-- 
+                    Wieso hier Class und ID?
+                    -->
                     <fieldset>
                         <legend>Search</legend>
                         <label for="searchterm">Search term or keywords:</label>
@@ -60,7 +101,7 @@
                 <!-- ############### VS1Lab 1a Form 2 End -->
 
                 <div class="discovery__wrapper row">
-                    <div class="discovery__taglist col-4"> <!-- solte eigentlich col-3 sein -->
+                    <div class="discovery__taglist col-3">
                         <ul class="discovery__results" id="discoveryResults">
                             <li>Castle (49.01379, 8.404435) #sight</li>
                             <li>IWI (49.01379, 8.390071) #edu</li>

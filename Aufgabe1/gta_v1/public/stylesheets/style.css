@@ -1,12 +1,10 @@
 /*
-  File origin: VS1LAB A1b  
+  File origin: VS1LAB A1b
 
   CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
   CSS variables used for clarity and themability (e.g. through SSR). 
   Inherited box sizing used for ease of including 3rd party content-box components.
 */
-
-/* Color: #F26101 #FFFFFF #D9E8F5 #91BED4 #304269 */
 
 /* Global styling */
 
@@ -15,13 +13,13 @@ html {
 }
 
 * {
-  font-family: "IBM Plex Mono", sans-serif;
   margin: 0;
   padding: 0;
 
   /* This approach prevents issues with 3rd party content-box components */
   box-sizing: inherit;
 }
+
 /* Variables (example: see declaration for "a" below) */
 
 :root {
@@ -34,6 +32,7 @@ html {
 
 /* HTML element styles */
 body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -43,6 +42,12 @@ body {
 input:not(.submit) {
   margin-bottom: 10px;
 }
+/*  
+Alle Imput Elemente, die nicht aus der Klasse submit sind,
+haben 10 Pixel Abstand unter der Box
+*/
+
+
 input {
   padding: 10px;
   border: none;
@@ -62,21 +67,34 @@ input {
 
 fieldset {
   padding: 10px;
-  border: 2px solid #304269;
-  background-color: #D9E8F5;
 }
+/*   
+Abstand zwischen Gruppe der Labels und Boxrand ist 10 Pixel
+*/
+
 fieldset > legend {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 5px; 
+  padding-right: 5px; 
 }
+/*   
+Es werden legenden ausgesucht, die in einem Fieldset sind
+Abstand von imput zu rand beträgt rechts und links 5 Pixel
+*/
+
 
 h2 {
-  padding-left: 10px;
+  padding-left: 10px; 
 }
+/*  
+Imput hat bei Überschrift 2 einen Abstand von 10 Pixel zum linken Rand
+*/
 
 label{
   padding-bottom: 2px;
 }
+/*
+Die Labens haben nach unten einen Abstand von 2 Pixeln
+*/
 
 /* Grid styles (no changes required) */
 
@@ -88,51 +106,51 @@ label{
 }
 
 .col-1 {
-  width: calc(8.33% - 1rem);
+  width: calc(8.33%);
 }
 
 .col-2 {
-  width: calc(16.66% - 1rem);
+  width: calc(16.66%);
 }
 
 .col-3 {
-  width: calc(25% - 1rem);
+  width: calc(25%);
 }
 
 .col-4 {
-  width: calc(33.33% - 1rem);
+  width: calc(33.33%);
 }
 
 .col-5 {
-  width: calc(41.66% - 1rem);
+  width: calc(41.66%);
 }
 
 .col-6 {
-  width: calc(50% - 1rem);
+  width: calc(50%);
 }
 
 .col-7 {
-  width: calc(58.33% - 1rem);
+  width: calc(58.33%);
 }
 
 .col-8 {
-  width: calc(66.66% - 1rem);
+  width: calc(66.66%);
 }
 
 .col-9 {
-  width: calc(75% - 1rem);
+  width: calc(75%);
 }
 
 .col-10 {
-  width: calc(83.33% - 1rem);
+  width: calc(83.33%);
 }
 
 .col-11 {
-  width: calc(91.66% - 1rem);
+  width: calc(91.66%);
 }
 
 .col-12 {
-  width: calc(100% - 1rem);
+  width: calc(100%);
 }
 
 
@@ -143,7 +161,7 @@ label{
   height: 100px;
   align-items: center;
   padding: 10px;
-  background: #304269;
+  background: #000;
   color: #fff;
 }
 .header__title {
@@ -157,11 +175,9 @@ label{
 a {
   color: #fff;
   text-decoration: none;
-  transition: 0.3s;
 }
 a:hover {
-  color: #F26101;
-  font-weight: 800;
+  color: #bbb;
 }
 
 /* ###  ### Styles for Main Component */
@@ -173,42 +189,70 @@ a:hover {
   padding: 10px;
   padding-right: 0px;
 }
-fieldset {
+/*    
+Klasse main_tagging hat einen Abstand von Labels
+zum definierten Rand von 10px, der rechte Rand hat explizit keinen Abstand
+*/
+
+fieldset {    
   display: flex;
   flex-direction: column;
 }
+/*  
+Fieldsets sollen flexible Container sein, Inhalte sollen frei verschiebbar sein
+Labels sollen untereinander angeordnet werden.
+*/
 
 /* ###  ### Styles for Discovery component */
 
-.main__discovery {
+.main__discovery {    
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
+/*   
+(siehe fieldset)
+*/
+
 .main__discovery input{
   display: block;
 }
+/* 
+Elemente nehmen gesamte Breite einer Box in Anspruch
+*/
+
 .discovery__results{
   padding: 10px;
   padding-left: 0px;
-  padding-right: 0px;
+  padding-right: 0px;    
 }
+
+
 ul li {
   list-style-type: none;
   padding: 10px;
-  margin-bottom: 10px;
-  background-color: #91BED4;
+  margin-bottom: 10px;  
+  border: 1px solid #000;
 }
+/* 
+Punkte bei Liste werden entfernt.
+Reiner Text bleibt
+*/
+
 .discovery__map {
-  padding: 10px;
+  padding: 10px;    
   padding-right: 0px;
   display: flex;
   flex-direction: column;
 }
+
+
 #mapView {
   max-height: 400px;
-  max-width: 400px;
+  max-width: 400px;    
 }
+/*    */
+
 
 /* ###  ### Styles for Footer Component */
 
@@ -218,22 +262,28 @@ footer {
   background: #304269;
   color: #fff;
 }
+/*  
+Abstand nach oben wird automatisch berechnet  
+*/
+
 
 /* ###  ### Media Queries */
 @media (max-width: 750px) {
   .main {flex-direction: column;}
-  [class*="col-"] {width: 100%;}
-  .discovery__taglist{width: calc(41.66% - 1rem);}
-  .discovery__map{width: calc(66.66% - 1rem);}
+  [class*="col-"] {width: 100%;} 
+  .discovery__taglist{width: calc(41.66%);}
+  .discovery__map{width: calc(66.66%);}
   .main__tagging {padding-right: 10px;}
+  #mapView {max-width: none; max-height: none;}
 }
+/*
+  Gilt für Bildschirme einer Breite von 750 oder weniger Pixeln
+*/
+
 @media (max-width: 450px) {
   .discovery__taglist{width: 100%;}
-  .discovery__map{width: 100%;}
-  .header{
-    flex-direction: column;
-  }
-  .discovery__wrapper {
-    flex-direction: column;
-  }
+  .discovery__map{width: 100%; padding-left: 0px; padding-top: 0px;}
+  .header{flex-direction: column;}
+  .discovery__wrapper {flex-direction: column;}
 }
+/*    */
