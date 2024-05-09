@@ -234,12 +234,13 @@ Reiner Text bleibt
   padding-right: 0px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 0px;
 }
 
 
 #mapView {
-  max-height: 400px;
-  max-width: 400px;    
+  height: 100%;
+  width: auto;
 }
 /*    */
 
@@ -279,5 +280,6 @@ Abstand nach oben wird automatisch berechnet
 /*    */
 
 #map { 
-  height: 500px;
+  height: 100%;
+  margin-top: auto; 
 }

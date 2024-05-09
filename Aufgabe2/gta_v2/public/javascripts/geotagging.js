@@ -100,13 +100,9 @@ class MapManager {
     updateMarkers(latitude, longitude, tags = []) {
         // delete all markers
         this.#markers.clearLayers();
-        L.marker([latitude, longitude])
-            .bindPopup("Your Location")
-            .addTo(this.#markers);
+        L.marker([latitude, longitude]).bindPopup("Your Location").addTo(this.#markers);
         for (const tag of tags) {
-            L.marker([tag.location.latitude,tag.location.longitude])
-                .bindPopup(tag.name)
-                .addTo(this.#markers);  
+            L.marker([tag.location.latitude, tag.location.longitude]).bindPopup(tag.name).addTo(this.#markers);
         }
     }
 }
@@ -124,14 +120,45 @@ Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschriebe
 
 
 function updateLocation(){
-    //kordinaten einlesen, call back function
-    //Karte (alt) löschen
-    //neue Karte laden
+    LocationHelper.findLocation((location) => {
+        var latitude = location.latitude;
+        var longitude = location.longitude;
+
+        document.getElementById('latitude').value = latitude;
+        document.getElementById('longitude').value = longitude;
+        document.getElementById('sLatitude').value = latitude;
+        document.getElementById('sLongitude').value = longitude;
+
+
+        document.getElementById('mapView').nextElementSibling.remove();
+        document.getElementById('mapView').remove();
+        var mapDiv = document.createElement('div');
+        mapDiv.setAttribute("id", "map");
+        document.getElementsByClassName('discovery__map')[0].appendChild(mapDiv);
+
+        var map = new MapManager();
+        map.initMap(latitude,longitude);
+        var allResults = document.getElementById('discoveryResults').getElementsByTagName('li');
+        var tagList = Array();
+        for (var i = 0; i < allResults.length; i++) {
+            var listElement = allResults[i].innerText;
+            var listName = listElement.substring(0, listElement.indexOf(' ('));
+            var listLatitudeStr = listElement.substring(listElement.indexOf(' (') + 2, listElement.indexOf(', '));
+            var listLongitudeStr = listElement.substring(listElement.indexOf(', ') + 2, listElement.indexOf(') '));
+            var listTag = {
+                location:{
+                    latitude: listLatitudeStr,
+                    longitude: listLongitudeStr
+                },
+                name: listName
+            };
+            tagList.push(listTag);
+        }
+        map.updateMarkers(latitude,longitude,tagList);
+    });
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
-    updateLocation()
-    console.log("hallo World")
+    updateLocation();
 });
