@@ -188,26 +188,26 @@ fieldset {
 .main__discovery input{
   display: block;
 }
-.discovery__results{
-  padding: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
 ul li {
   list-style-type: none;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   background-color: #91BED4;
 }
 .discovery__map {
   padding: 10px;
   padding-right: 0px;
+  padding-bottom: 0px;
   display: flex;
   flex-direction: column;
 }
+.discovery__taglist{
+  overflow: scroll;
+  height: 100%;
+}
 #mapView {
   max-height: 400px;
-  max-width: 400px;
+  width: 100%;
 }
 
 /* ###  ### Styles for Footer Component */
