@@ -162,7 +162,7 @@ ul li:first-child {margin-top: 0px;}
 }
 
 #mapView {
-  max-height: calc(100vh - 315px);
+  max-height: calc(100vh - 340px);
   width: 100%;
 }
 #map { 
