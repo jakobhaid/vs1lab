@@ -38,20 +38,17 @@
                     post= Name-Wert Paar in der URL nicht sichtbar
                           Unbegrenzte Länge der URL
                     -->
-                    <fieldset>                                                  
+                    <fieldset>
                         <!--  
                         Verwendet um Elemente in Formular visuell zu sortieren
                         Gruppiert Formularelemente
                         -->
-                        <legend>Add a new GeoTag</legend>                      
-                        <!--   
-                        Titel für den (zusammengehörigen) Abschnitt  
-                        -->
+                        <legend>Add a new GeoTag</legend>
+
+                        <!-- Titel für den (zusammengehörigen) Abschnitt -->
                         <label for="latitude">Lattude:   </label><input type="number" disabled id="latitude" value="12345678"/>           
                         <!--  
-                        label= Es wird ein Feld mit dem Namen Latitude erstellt
-                                id gibt wieder eindeutige Kennung für dieses Label an
-
+                        label= Es wird ein Feld mit dem Namen Latitude erstellt id gibt wieder eindeutige Kennung für dieses Label an
                         input= Erfasst Benutzereingabe
                         type= hier werden nur Zahlen als Eingabe akzeptiert
                         placeholder= Platzhalter, zeigt nur, welche Art von Daten erwartet werden
@@ -66,13 +63,12 @@
                         maxlength= können maximal 10 char eingegeben werden
                         -->
                         <label for="hashtag">Hashtag:    </label><input type="text" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="11" id="hashtag"/>
-                        <!-- 
-                        pattern= muss mit # anfangen, dann mindestens 1 Buchstabe folgen
-                        -->
+                        <!-- pattern= muss mit # anfangen, dann mindestens 1 Buchstabe folgen -->
+
                         <input type="submit" value="Add Tag" class="submit">
                         <!-- 
-                        submit= schaltfläche kann verwendet werden um formular abzuschicken
-                        class= weist der Schaltfläche eine Klasse namens "submit" 
+                        submit = schaltfläche kann verwendet werden um formular abzuschicken
+                        class = weist der Schaltfläche eine Klasse namens "submit" 
                         (Um bspw. mit JavaSkript oder CSS zu interagieren)
                         Im gegensatz zu id nicht eindeutig, kann also mehrfach in document benutzt werden
                         -->
@@ -87,9 +83,6 @@
 
                 <!-- ############### VS1Lab 1a Form 2 Start -->
                 <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="get">
-                    <!-- 
-                    Wieso hier Class und ID?
-                    -->
                     <fieldset>
                         <legend>Search</legend>
                         <label for="searchterm">Search term or keywords:</label>
