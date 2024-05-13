@@ -67,9 +67,7 @@ class LocationHelper {
     }
 }
 
-/**
- * A class to help using the Leaflet map service.
- */
+//A class to help using the Leaflet map service.
 class MapManager {
 
     #map
@@ -106,17 +104,6 @@ class MapManager {
         }
     }
 }
-
-/**
- * TODO: 'updateLocation'
- * A function to retrieve the current location and update the page.
- * It is called once the page has been fully loaded.
- */
-// ... your code here ...
-
-/*
-Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschrieben hab?
-*/
 
 
 function updateLocation(){
