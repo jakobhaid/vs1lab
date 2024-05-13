@@ -67,9 +67,7 @@ class LocationHelper {
     }
 }
 
-/**
- * A class to help using the Leaflet map service.
- */
+//A class to help using the Leaflet map service.
 class MapManager {
 
     #map
@@ -106,52 +104,6 @@ class MapManager {
     }
 }
 
-/**
- * TODO: 'updateLocation'
- * A function to retrieve the current location and update the page.
- * It is called once the page has been fully loaded.
- */
-// ... your code here ...
-
-/*
-Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschrieben hab?
-*/
-
-/*
-### 1. Teilaufgabe: Koordinaten bestimmen
-
-- [ ] Funktion `updateLocation` erstellen
-  - [ ] Nach dem Laden automatisch aufrufen
-  - [ ] Auslesen der Position mit `findLocation`
-  - [ ] Koordinaten in die Formulare eintragen
-    - [ ] `latitude` und `longitude` Felder
-    - [ ] Koordinaten in `value`-Attribute schreiben
-    - [ ] Auch versteckte Eingabefelder berücksichtigen
-
-### 2. Teilaufgabe: Karte darstellen
-
-- [ ] `updateLocation`-Funktion ergänzen
-  - [ ] Funktionen `initMap` und `updateMarkers` aufrufen
-  - [ ] `img` und `p`-Elemente mit DOM-Funktionen entfernen
-*/
-
-
-// 1. Teilaufgabe: Koordinaten bestimmen
-
-
-// Nach dem Laden automatisch aufrufen
-// latitude` und `longitude` Felder
-// Koordinaten in `value`-Attribute schreiben
-// Auch versteckte Eingabefelder berücksichtigen
-
-// 2. Teilaufgabe: Karte darstellen
-
-// updateLocation`-Funktion ergänzen
-// Funktionen `initMap` und `updateMarkers` aufrufen
-// img` und `p`-Elemente mit DOM-Funktionen entfernen
-
-// Plus schauen, wo etwas verändert wurde zum anfangstemplate
-
 
 function updateLocation(){
 
@@ -183,13 +135,28 @@ function updateLocation(){
 
         // Initialisiert Karte
         map.initMap(latitude,longitude);
+
+        // Alle <li>-Elemente innerhalb des Elements mit der ID 'discoveryResults' werden abgerufen 
+        // und in der Variablen allResults gespeichert.
         var allResults = document.getElementById('discoveryResults').getElementsByTagName('li');
+
+        // leeres Array
         var tagList = Array();
+
+
+        
+        // Schleife durch die li Elemente
         for (var i = 0; i < allResults.length; i++) {
+
+            //Für jedes <li>-Element wird der Textinhalt (innerText) abgerufen und in der Variablen listElement gespeichert. 
             var listElement = allResults[i].innerText;
+
+            // Ortsname, Breiten- und Längengrad wird aus Textinhalt extrahiert
             var listName = listElement.substring(0, listElement.indexOf(' ('));
             var listLatitudeStr = listElement.substring(listElement.indexOf(' (') + 2, listElement.indexOf(', '));
             var listLongitudeStr = listElement.substring(listElement.indexOf(', ') + 2, listElement.indexOf(') '));
+            
+            // Objekt listTag mit Ortsnamen, Breiten- und Längengrad
             var listTag = {
                 location:{
                     latitude: listLatitudeStr,
@@ -197,8 +164,12 @@ function updateLocation(){
                 },
                 name: listName
             };
+
+            //Fügt listTag in unser Array tagList ein
             tagList.push(listTag);
         }
+
+        // Marker auf der Karte wird aktualisiert 
         map.updateMarkers(latitude,longitude,tagList);
     });
 }
