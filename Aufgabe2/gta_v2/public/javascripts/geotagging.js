@@ -119,8 +119,6 @@ Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschriebe
 */
 
 
-
-
 function updateLocation(){
 
     // Auslesen der Position mit `findLocation`
