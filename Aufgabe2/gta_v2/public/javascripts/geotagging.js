@@ -117,25 +117,71 @@ class MapManager {
 Hast du eine Benachrichtigung bekommen, dass ich hier einen Kommentar geschrieben hab?
 */
 
+/*
+### 1. Teilaufgabe: Koordinaten bestimmen
+
+- [ ] Funktion `updateLocation` erstellen
+  - [ ] Nach dem Laden automatisch aufrufen
+  - [ ] Auslesen der Position mit `findLocation`
+  - [ ] Koordinaten in die Formulare eintragen
+    - [ ] `latitude` und `longitude` Felder
+    - [ ] Koordinaten in `value`-Attribute schreiben
+    - [ ] Auch versteckte Eingabefelder berücksichtigen
+
+### 2. Teilaufgabe: Karte darstellen
+
+- [ ] `updateLocation`-Funktion ergänzen
+  - [ ] Funktionen `initMap` und `updateMarkers` aufrufen
+  - [ ] `img` und `p`-Elemente mit DOM-Funktionen entfernen
+*/
+
+
+// 1. Teilaufgabe: Koordinaten bestimmen
+
+
+// Nach dem Laden automatisch aufrufen
+// latitude` und `longitude` Felder
+// Koordinaten in `value`-Attribute schreiben
+// Auch versteckte Eingabefelder berücksichtigen
+
+// 2. Teilaufgabe: Karte darstellen
+
+// updateLocation`-Funktion ergänzen
+// Funktionen `initMap` und `updateMarkers` aufrufen
+// img` und `p`-Elemente mit DOM-Funktionen entfernen
+
+// Plus schauen, wo etwas verändert wurde zum anfangstemplate
+
 
 function updateLocation(){
-    LocationHelper.findLocation((location) => {
+
+    // Auslesen der Position mit `findLocation`
+    // Pfeil bedeutet 
+    LocationHelper.findLocation(function(location) {
         var latitude = location.latitude;
         var longitude = location.longitude;
 
+        // Koordinaten in die Formulare eintragen
         document.getElementById('latitude').value = latitude;
         document.getElementById('longitude').value = longitude;
         document.getElementById('sLatitude').value = latitude;
         document.getElementById('sLongitude').value = longitude;
 
 
+        /*
+        Vorhandenes Kartenelement durch neues <div>-Element mit ID 'map' ersetzt
+        und dem entsprechenden Elternelement im DOM hinzugefügt.
+        */
         document.getElementById('mapView').nextElementSibling.remove();
         document.getElementById('mapView').remove();
         var mapDiv = document.createElement('div');
         mapDiv.setAttribute("id", "map");
         document.getElementsByClassName('discovery__map')[0].appendChild(mapDiv);
 
+        // neue Instanz von MapManager
         var map = new MapManager();
+
+        // Initialisiert Karte
         map.initMap(latitude,longitude);
         var allResults = document.getElementById('discoveryResults').getElementsByTagName('li');
         var tagList = Array();
