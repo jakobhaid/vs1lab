@@ -109,8 +109,8 @@ class MapManager {
 function updateLocation(){
 
     // Auslesen der Position mit `findLocation`
-    // Pfeil bedeutet 
-    LocationHelper.findLocation(function(location) {
+    // Callback = location
+    LocationHelper.findLocation(function(location) {    
         var latitude = location.latitude;
         var longitude = location.longitude;
 
