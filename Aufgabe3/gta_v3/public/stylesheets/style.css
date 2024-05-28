@@ -1,0 +1,202 @@
+/*
+  File origin: VS1LAB A1b
+
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Color: #F26101 #FFFFFF #D9E8F5 #91BED4 #304269 */
+
+/* Global styling */
+
+html {box-sizing: border-box;}
+
+* {
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  padding: 0;
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00B7FF;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+}
+
+
+/* HTML element styles */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ### ### Styles for other HTML elements */
+input:not(.submit) {margin-bottom: 10px;}
+input {
+  padding: 10px;
+  border: none;
+}
+.submit {
+  background-color: #304269;
+  color: #fff;
+  transition: 0.3s;
+}
+.submit:hover {
+  background-color: #D9E8F5;
+  color: #F26101;
+  box-shadow:0px 0px 0px 3px #F26101 inset;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+fieldset {
+  padding: 10px;
+  border: 2px solid #304269;
+  background-color: #D9E8F5;
+}
+fieldset > legend {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+h2 {padding-left: 10px;}
+
+label{padding-bottom: 2px;}
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 { width: 100%;}
+
+
+/* ###  ### Styles for Header Component */
+
+.header {
+  flex: 0;
+  height: 100px;
+  align-items: center;
+  padding: 10px;
+  background: #304269;
+  color: #fff;
+}
+.header__title {font-weight: 200;}
+.header img{
+  width: 40px;
+  min-width: 30px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+a:hover {
+  color: #F26101;
+  font-weight: 800;
+}
+
+/* ###  ### Styles for Main Component */
+
+
+/* ###  ### Styles for Tagging component */
+
+.main__tagging {
+  padding: 10px;
+  padding-right: 0px;
+}
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ###  ### Styles for Discovery component */
+
+.main__discovery {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.main__discovery input{display: block;}
+ul li {
+  list-style-type: none;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #91BED4;
+}
+ul li:first-child {margin-top: 0px;}
+
+.discovery__wrapper{padding-top: 10px;}
+.discovery__map {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.discovery__taglist{
+  overflow: auto;
+  max-height: calc(100vh - 315px);
+  min-height: 199px;
+}
+
+#mapView {
+  max-height: calc(100vh - 340px);
+  width: 100%;
+}
+#map { 
+  height: 100%;
+  min-height: 190px;
+}
+
+/* ###  ### Styles for Footer Component */
+
+footer {
+  margin-top: auto;
+  padding: 10px;
+  background: #304269;
+  color: #fff;
+}
+
+/* ###  ### Media Queries */
+@media (max-width: 750px) {
+  .main {flex-direction: column;}
+  [class*="col-"] {width: 100%;} 
+  .discovery__taglist{width: 41.66%;}
+  .discovery__map{width: 66.66%;}
+  .main__tagging {padding-right: 10px;}
+  #mapView {max-width: none; max-height: none;}
+}
+/*
+  Gilt für Bildschirme einer Breite von 750px oder weniger
+*/
+
+@media (max-width: 450px) {
+  .discovery__taglist{width: 100%; padding-bottom: 10px;}
+  .discovery__map{width: 100%; padding-left: 0px; padding-top: 0px;}
+  .header{flex-direction: column;}
+  .discovery__wrapper {flex-direction: column;}
+  #map { min-height: 300px;}
+}
+/*    */
