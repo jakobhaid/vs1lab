@@ -58,6 +58,3 @@ app.use(function(err, req, res) {
 });
 
 module.exports = app;
-
-// Set favicon
-//app.use('/favicon.ico', express.static('favicon.ico'));
