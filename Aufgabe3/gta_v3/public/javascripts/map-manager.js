@@ -1,12 +1,13 @@
 // File origin: VS1LAB A2 
 
 /**
- * from VS1LAB A3
- * 
- * A class to help using the Leaflet map service.
- */
- // eslint-disable-next-line no-unused-vars
- class MapManager {
+* from VS1LAB A3
+* 
+* A class to help using the Leaflet map service.
+*/
+// eslint-disable-next-line no-unused-vars
+
+class MapManager {
 
     #map
     #defaultIcon
@@ -14,15 +15,15 @@
     constructor() {
         // Default Icon of Leaflet can not be loaded in our environment, so it  was manually added to the repo
         this.#defaultIcon = L.icon({
-           iconUrl: '/images/marker.svg',
-           shadowUrl: '/images/marker-shadow.svg',
-           iconSize: [25, 41],
-           iconAnchor: [12, 41],
-           popupAnchor: [1, -34],
-           shadowSize: [41, 41]
+            iconUrl: 'images/marker.svg',
+            shadowUrl: 'images/marker-shadow.svg',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
         });
     }
-    
+
     /**
     * Initialize a Leaflet map
     * @param {number} latitude The map center latitude
@@ -48,13 +49,10 @@
     updateMarkers(latitude, longitude, tags = []) {
         // delete all markers
         this.#markers.clearLayers();
-        L.marker([latitude, longitude], { icon: this.#defaultIcon })
-            .bindPopup("Your Location")
-            .addTo(this.#markers);
+        L.marker([latitude, longitude], { icon: this.#defaultIcon }).bindPopup("Your Location").addTo(this.#markers);
+        
         for (const tag of tags) {
-            L.marker([tag.location.latitude,tag.location.longitude], { icon: this.#defaultIcon })
-                .bindPopup(tag.name)
-                .addTo(this.#markers);  
+            L.marker([tag.location.latitude,tag.location.longitude], { icon: this.#defaultIcon }).bindPopup(tag.name).addTo(this.#markers);  
         }
     }
 }
