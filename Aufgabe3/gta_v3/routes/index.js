@@ -84,10 +84,8 @@ router.post('/tagging', (req, res) => {
   const newGeoTag = new GeoTag(name, parseFloat(latitude), parseFloat(longitude), hashtag);
   inMemoryStore.addGeoTag(newGeoTag);
 
-  res.redirect('/');
-
-  //const taglistInMemory = inMemoryStore.getAllGeoTags();
-  //res.render('index', { taglist: taglistInMemory, latitude: latitude, longitude: longitude });
+  const taglistInMemory = inMemoryStore.getAllGeoTags();
+  res.render('index', { taglist: taglistInMemory, latitude: latitude, longitude: longitude });
 });
 
 /**

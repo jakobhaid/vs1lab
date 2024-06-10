@@ -35,10 +35,10 @@
                         <legend>Add a new GeoTag</legend>
 
                         <!-- Titel für den (zusammengehörigen) Abschnitt -->
-                        <label for="latitude">Lattude:   </label><input name="latitude" type="number" id="latitude" step="any" readonly />
-                        <label for="longitude">Longitude:</label><input name="longitude" type="number" id="longitude" step="any" readonly/>
-                        <label for="name">Name:          </label><input name="name" type="text" id="name" placeholder="e.g. Berlin" pattern="[A-Za-z]+" required id="name" maxlength="10"/>
-                        <label for="hashtag">Hashtag:    </label><input name="hashtag" type="text" id="hashtag" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="11" id="hashtag"/>
+                        <label for="latitude">Lattude:   </label><input name="latitude" type="number" id="latitude" step="any" readonly value="<%= latitude %>" />
+                        <label for="longitude">Longitude:</label><input name="longitude" type="number" id="longitude" step="any" readonly value="<%= longitude %>"/>
+                        <label for="name">Name:          </label><input name="name" type="text" id="name" placeholder="e.g. Berlin" pattern="[A-Za-z]+" required id="name" maxlength="10" required/>
+                        <label for="hashtag">Hashtag:    </label><input name="hashtag" type="text" id="hashtag" placeholder="e.g. #ber" pattern="[#][A-Za-z]+" maxlength="11" id="hashtag" required/>
                         <input type="submit" value="Add Tag" class="submit">
                     </fieldset>
                 </form>
@@ -54,8 +54,8 @@
                     <fieldset>
                         <legend>Search</legend>
                         <label for="searchterm">Search term or keywords:</label><input type="text" placeholder="e.g. berlin" name="searchterm" id="searchterm"/>
-                        <label hidden for="sLatitude">sLatitude</label><input type="hidden" name="sLatitude" id="sLatitude"  value="12345678"/>
-                        <label hidden for="sLongitude">sLongitude</label><input type="hidden" name="sLongitude" id="sLongitude" value="12345678"/>
+                        <label hidden for="sLatitude">sLatitude</label><input type="hidden" name="sLatitude" id="sLatitude"  value="<%= latitude %>"/>
+                        <label hidden for="sLongitude">sLongitude</label><input type="hidden" name="sLongitude" id="sLongitude" value="<%= longitude %>"/>
                         <input type="submit" value="Search" class="submit">
                     </fieldset>
                 </form>

@@ -17,7 +17,7 @@ function updateLocation(){
     const previousLong = document.getElementById("longitude").value;
     
     // Position schon eingetragen?
-    if (previousLat == "" || previousLong == "") {
+    if (previousLat == "" || previousLong == "" || previousLat == undefined || previousLong == undefined) {
         // Koordinaten sind nicht gesetzt, also finde die aktuelle Position
         LocationHelper.findLocation((locationHelper) => {
             var latitude = locationHelper.latitude;
@@ -86,7 +86,7 @@ function updateMapAndMarkers(latitude, longitude) {
     }
 
     // Marker auf der Karte wird aktualisiert 
-    map.updateMarkers(latitude,longitude,tagList);
+    map.updateMarkers(latitude, longitude, tagList);
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
