@@ -110,4 +110,4 @@ class inMemoryGeoTagStore{
     }
 }
 
-module.exports = inMemoryGeoTagStore
+module.exports = inMemoryGeoTagStore;   // Semicolon hinzugefügt

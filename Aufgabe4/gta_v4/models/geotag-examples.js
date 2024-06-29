@@ -39,4 +39,3 @@ class GeoTagExamples {
 }
 
 module.exports = GeoTagExamples;
-// 123

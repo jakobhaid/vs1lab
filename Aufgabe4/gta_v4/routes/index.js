@@ -59,6 +59,43 @@ router.get('/', (req, res) => {
 // TODO: ... your code here ...
 
 
+
+/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
+
+router.get('/api/geotags', (req, res) => {
+  let resBody;
+
+  if (req.query.latitude == null || req.query.longitude == null) {
+      res.status(422);
+      res.send();
+  }
+
+  const lat = +req.query.latitude;
+  const lon = +req.query.longitude;
+  const rad = req.query.rad !== undefined ? +req.query.rad : 25;
+
+  console.log(req.query.search);
+
+  if (req.query.search) {
+      resBody = tagStore.searchNearbyGeoTags(lat, lon, rad, req.query.search);
+  } else {
+      resBody = tagStore.getNearbyGeoTags(lat, lon, rad);
+  }
+
+  res.send(resBody);
+})
+
+
+/////////////////////////////// Mein Code Ende
+
+
+
+
+
+
+
+
+
 /**
 * Route '/api/geotags' for HTTP 'POST' requests.
 * (http://expressjs.com/de/4x/api.html#app.post.method)
@@ -73,6 +110,30 @@ router.get('/', (req, res) => {
 // TODO: ... your code here ...
 
 
+
+/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
+
+router.post('/api/geotags', (req, res) => {
+
+  tagStore.addGeoTag(req.body['tagName'], req.body['lat'], req.body['long'], req.body['tag']);
+  let resBody = tagStore.findByName(req.body['tagName']);
+  res.location(`/api/geotags/${req.body['tagName']}`);
+  res.status(201);
+  res.send(resBody);
+})
+
+
+
+/////////////////////////////// Mein Code Ende
+
+
+
+
+
+
+
+
+
 /**
 * Route '/api/geotags/:id' for HTTP 'GET' requests.
 * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -84,6 +145,21 @@ router.get('/', (req, res) => {
 */
 
 // TODO: ... your code here ...
+
+
+/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
+
+router.get('/api/geotags/:id', (req, res) => {
+  res.send(tagStore.findByName(req.params.id));
+})
+
+/////////////////////////////// Mein Code Ende
+
+
+
+
+
+
 
 
 /**
@@ -103,6 +179,20 @@ router.get('/', (req, res) => {
 // TODO: ... your code here ...
 
 
+/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
+
+router.put('/api/geotags/:id', (req, res) => {
+  const resBody = tagStore.updateTag(req.params.id, req.body);
+  res.send(resBody);
+})
+
+/////////////////////////////// Mein Code Ende
+
+
+
+
+
+
 /**
 * Route '/api/geotags/:id' for HTTP 'DELETE' requests.
 * (http://expressjs.com/de/4x/api.html#app.delete.method)
@@ -115,5 +205,20 @@ router.get('/', (req, res) => {
 */
 
 // TODO: ... your code here ...
+
+
+/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
+
+router.delete('/api/geotags/:id', (req, res) => {
+  const resBody = tagStore.findByName(req.params.id);
+  tagStore.removeGeoTag(req.params.id);
+  res.send(resBody);
+})
+
+/////////////////////////////// Mein Code Ende
+
+
+
+
 
 module.exports = router;
