@@ -23,24 +23,31 @@ const GeoTag = require('../models/geotag');
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
-const inMemoryStore = new inMemoryGeoTagStore();
+const geoTagStore = new GeoTagStore();
 
-inMemoryStore.examples(); // Lade die GeoTag-Beispiele in unser Array
 // App routes (A3)
-
-/**
-* Route '/' for HTTP 'GET' requests.
-* (http://expressjs.com/de/4x/api.html#app.get.method)
-*
-* Requests cary no parameters
-*
-* As response, the ejs-template is rendered without geotag objects.
-*/
-
 router.get('/', (req, res) => {
   const { latitude, longitude } = req.query;
-  res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude, longitude });
+  res.render('index', { taglist: geoTagStore.getAll(), latitude, longitude })
 });
+
+
+router.post('/tagging', (req,res) => {
+  const {name, latitude, longitude, hashtag} = req.body;
+  const newGeoTag = new GeoTag(name, parseFloat(latitude), parseFloat(longitude), hashtag);
+
+  geoTagStore.addGeoTag(newGeoTag);
+  res.redirect('/');
+})
+
+router.post('/discovery', (req,res) => {
+  const {latitude, longitude, keywords} = req.body;
+  const searchGeoTags = geoTagStore.searchNearbyGeoTags(parseFloat(latitude), parseFloat(longitude), 100, keywords);
+
+  res.render('index', {taglist: searchGeoTags, latitude : latitude, longitude: longitude});
+})
+
+
 
 // API routes (A4)
 
@@ -56,13 +63,8 @@ router.get('/', (req, res) => {
 * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
 */
 
-// TODO: ... your code here ...
-
-
-
 /////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-
-router.get('/api/geotags', (req, res) => {
+/* router.get('/api/geotags', (req, res) => {
   let resBody;
 
   if (req.query.latitude == null || req.query.longitude == null) {
@@ -83,15 +85,19 @@ router.get('/api/geotags', (req, res) => {
   }
 
   res.send(resBody);
-})
-
-
+}) */
 /////////////////////////////// Mein Code Ende
 
+router.get('/api/geotags', (req, res) => {
+  console.log("router.post /api/geotags GET aufgerufen");
+  const { searchterm, latitude, longitude, radius } = req.query;
+  let tags = geoTagStore.getNearbyGeoTags(latitude, longitude, radius || 10);
+  if (searchterm) {
+    tags = tags.filter(tag => tag.name.includes(searchterm) || tag.hashtag.includes(searchterm));
+  }
 
-
-
-
+  res.json(tags);
+});
 
 
 
@@ -107,29 +113,30 @@ router.get('/api/geotags', (req, res) => {
 * The new resource is rendered as JSON in the response.
 */
 
-// TODO: ... your code here ...
-
-
-
 /////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-
-router.post('/api/geotags', (req, res) => {
+/* router.post('/api/geotags', (req, res) => {
 
   tagStore.addGeoTag(req.body['tagName'], req.body['lat'], req.body['long'], req.body['tag']);
   let resBody = tagStore.findByName(req.body['tagName']);
   res.location(`/api/geotags/${req.body['tagName']}`);
   res.status(201);
   res.send(resBody);
-})
-
-
-
+}) */
 /////////////////////////////// Mein Code Ende
 
+router.post('/api/geotags', (req, res) => {
+  console.log("router.post /api/geotags POST aufgerufen");
+  const { name, latitude, longitude, hashtag } = req.body;
 
+  if (!name || !latitude || !longitude) {
+    return res.status(400).json({ error: "Name, latitude, and longitude are required" });
+  }
 
+  const newTag = new GeoTag(name, new Location(parseFloat(latitude), parseFloat(longitude)), hashtag);
+  geoTagStore.addGeoTag(newTag);
 
-
+  res.status(201).json(newTag);
+});
 
 
 
@@ -144,20 +151,23 @@ router.post('/api/geotags', (req, res) => {
 * The requested tag is rendered as JSON in the response.
 */
 
-// TODO: ... your code here ...
-
-
 /////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-
-router.get('/api/geotags/:id', (req, res) => {
+/* router.get('/api/geotags/:id', (req, res) => {
   res.send(tagStore.findByName(req.params.id));
-})
-
+}) */
 /////////////////////////////// Mein Code Ende
 
+router.get('/api/geotags/:id', (req, res) => {
+  console.log("router.post /api/geotags/:id GET aufgerufen");
+  const { id } = req.params;
+  const tag = geoTagStore.getGeoTagById(id);
 
+  if (!tag) {
+    return res.status(404).json({ error: "GeoTag not found" });
+  }
 
-
+  res.status(201).json(tag);
+});
 
 
 
@@ -176,19 +186,31 @@ router.get('/api/geotags/:id', (req, res) => {
 * The updated resource is rendered as JSON in the response. 
 */
 
-// TODO: ... your code here ...
-
-
 /////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-
-router.put('/api/geotags/:id', (req, res) => {
+/* router.put('/api/geotags/:id', (req, res) => {
   const resBody = tagStore.updateTag(req.params.id, req.body);
   res.send(resBody);
-})
-
+}) */
 /////////////////////////////// Mein Code Ende
 
+router.put('/api/geotags/:id', (req, res) => {
+  console.log("router.post /api/geotags/:id PUT aufgerufen");
+  const { id } = req.params;
+  const { name, latitude, longitude, hashtag } = req.body;
 
+  const updatedTag = geoTagStore.update(id, {
+    name,
+    latitude: parseFloat(latitude),
+    longitude: parseFloat(longitude),
+    hashtag
+  });
+
+  if (!updatedTag) {
+    return res.status(404).json({ error: "GeoTag not found" });
+  }
+
+  res.status(201).json(updatedTag);
+});
 
 
 
@@ -204,21 +226,25 @@ router.put('/api/geotags/:id', (req, res) => {
 * The deleted resource is rendered as JSON in the response.
 */
 
-// TODO: ... your code here ...
-
-
 /////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-
-router.delete('/api/geotags/:id', (req, res) => {
+/* router.delete('/api/geotags/:id', (req, res) => {
   const resBody = tagStore.findByName(req.params.id);
   tagStore.removeGeoTag(req.params.id);
   res.send(resBody);
-})
-
+}) */
 /////////////////////////////// Mein Code Ende
 
+router.delete('/api/geotags/:id', (req, res) => {
+  console.log("router.post /api/geotags/:id DELETE aufgerufen");
+  const { id } = req.params;
 
+  const deletedTag = geoTagStore.removeGeoTag(id);
 
+  if (!deletedTag) {
+    return res.status(404).json({ error: "GeoTag not found" });
+  }
 
+  res.status(201).json(deletedTag);
+});
 
 module.exports = router;

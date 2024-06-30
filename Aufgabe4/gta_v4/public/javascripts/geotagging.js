@@ -4,94 +4,184 @@
 
 // This script is executed when the browser loads index.html.
 
-// "console.log" writes to the browser's console. 
+// "console.log" writes to the browser's console.
 // The console window must be opened explicitly in the browser.
 // Try to find this output in the browser...
-console.log("The geoTagging script is going to start...");
 
-//import { LocationHelper } from './location-helper.js';
-//import { MapManager } from "./map-manager.js";
+const tagForm = document.getElementById('tag-form');
+const discoveryFilterForm = document.getElementById('discoveryFilterForm');
+var manager = new MapManager();
 
-function updateLocation(){
-    const previousLat = document.getElementById("latitude").value;
-    const previousLong = document.getElementById("longitude").value;
-    
-    // Position schon eingetragen?
-    if (previousLat == "" || previousLong == "" || previousLat == undefined || previousLong == undefined) {
-        // Koordinaten sind nicht gesetzt, also finde die aktuelle Position
-        LocationHelper.findLocation((locationHelper) => {
-            var latitude = locationHelper.latitude;
-            var longitude = locationHelper.longitude;
+/**
+ * TODO: 'updateLocation'
+ * A function to retrieve the current location and update the page.
+ * It is called once the page has been fully loaded.
+ */
+let latitude_output = document.getElementById("latitude");
+let longitude_output = document.getElementById("longitude");
+let latitude_hidden = document.getElementById("latitude-hidden");
+let longitude_hidden = document.getElementById("longitude-hidden");
 
-            // Koordinaten in die Formulare eintragen
-            document.getElementById("latitude").value = latitude;
-            document.getElementById("longitude").value = longitude;
-            document.getElementById('sLatitude').value = latitude;
-            document.getElementById('sLongitude').value = longitude;
+function updateLocation() {
 
-            // Aktualisiere die Karte mit den neuen Koordinaten und Markern
-            updateMapAndMarkers(latitude, longitude);
-        });
+    if (latitude_output.value && longitude_output.value) {
+        const locationHelper = new LocationHelper(latitude_output.value, longitude_output.value);
+        updateMap(locationHelper);
     } else {
-        updateMapAndMarkers(previousLat, previousLong);
+        LocationHelper.findLocation(function (locationHelper){
+            //Nicht vorhandene Koordinaten --> Location Helper Aufruf
+            latitude_output.value = locationHelper.latitude;
+            longitude_output.value = locationHelper.longitude;
+            latitude_hidden.value = locationHelper.latitude;
+            longitude_hidden.value = locationHelper.longitude;
+            updateMap(locationHelper);
+        });
     }
 }
 
-function updateMapAndMarkers(latitude, longitude) {
-    /*
-    Vorhandenes Kartenelement durch neues <div>-Element mit ID 'map' ersetzt
-    und dem entsprechenden Elternelement im DOM hinzugefügt.
-    */
-    document.getElementById('mapView').nextElementSibling.remove();
-    document.getElementById('mapView').remove();
-    var mapDiv = document.createElement('div');
-    mapDiv.setAttribute("id", "map");
-    document.getElementsByClassName('discovery__map')[0].appendChild(mapDiv);
+function updateMap(locationHelper) {
 
-    // neue Instanz von MapManager
-    var map = new MapManager();
+    manager.initMap(locationHelper.latitude, locationHelper.longitude);
+    let currentTags = getAllTagsInDocument();
+    console.log(currentTags);
+    manager.updateMarkers(locationHelper.latitude, locationHelper.longitude, currentTags);
 
-    // Initialisiert Karte
-    map.initMap(latitude,longitude);
+    const oldImage = document.getElementById('mapView');
+    const mapSubtitle = document.getElementById('mapSubtitle');
 
-    // Alle <li>-Elemente innerhalb des Elements mit der ID 'discoveryResults' werden abgerufen 
-    // und in der Variablen allResults gespeichert.
-    var allResults = document.getElementById('discoveryResults').getElementsByTagName('li');
+    oldImage.remove();
+    mapSubtitle.remove();
 
-    // leeres Array
-    var tagList = Array();
+}
 
-    // Schleife durch die li Elemente
-    for (var i = 0; i < allResults.length; i++) {
+function getAllTagsInDocument() {
 
-        //Für jedes <li>-Element wird der Textinhalt (innerText) abgerufen und in der Variablen listElement gespeichert. 
-        var listElement = allResults[i].innerText;
+    let list = document.getElementById("discoveryResults").getElementsByTagName("li");
+    let tags = [];
 
-        // Ortsname, Breiten- und Längengrad wird aus Textinhalt extrahiert
-        var listName = listElement.substring(0, listElement.indexOf('(') - 1);
-        var listLatitudeStr = listElement.substring(listElement.indexOf('(') + 2, listElement.indexOf(','));
-        var listLongitudeStr = listElement.substring(listElement.indexOf(',') + 1, listElement.indexOf(')'));
-        
-        // Objekt listTag mit Ortsnamen, Breiten- und Längengrad
-        var listTag = {
-            name: listName,
-            location:{
-                latitude: listLatitudeStr,
-                longitude: listLongitudeStr
+    for (let li of list) {
+        let element = li.innerHTML;
+        //Format: NAME ( latitude,longitude) #hashtag
+        let elementName = element.substring(0, element.indexOf('(') - 1);
+        let elementLatitude = element.substring(element.indexOf('(') + 2, element.indexOf(','));
+        let elementLongitude = element.substring(element.indexOf(',') + 1, element.indexOf(')'));
+
+        let tag = {
+            name: elementName,
+            location: {
+                latitude: elementLatitude,
+                longitude: elementLongitude
             }
         };
+        tags.push(tag);
 
-        //Fügt listTag in unser Array tagList ein
-        tagList.push(listTag);
     }
+    return tags;
 
-    // Marker auf der Karte wird aktualisiert 
-    map.updateMarkers(latitude, longitude, tagList);
 }
 
-// Wait for the page to fully load its DOM content, then call updateLocation
+tagForm.addEventListener('submit', function(event){
+    event.preventDefault(); // Prevent the default form submission
+
+    console.log("tagForm eventListener submit");
+
+    //Get formula data
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+    const name = document.getElementById('name').value;
+    const hashtag = document.getElementById('hashtag').value;
+
+    //Create a new tag
+    const tag = {
+        latitude: latitude,
+        longitude: longitude,
+        name: name,
+        hashtag: hashtag
+    }
+
+    //Send the tag to the server
+    fetch('/api/geotags', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tag)
+    })
+        .then(response => response.json())
+        .then(data => {
+                console.log('Success:', data);
+                //Adding the new tag to the map
+                let taglist_json = document.getElementById('map').getAttribute('data-tags');
+                let taglist;
+                taglist = JSON.parse(taglist_json);
+                taglist.push(data);
+                document.getElementById('map').setAttribute('data-tags', JSON.stringify(taglist));
+                manager.updateMarkers(latitude, longitude, taglist);
+
+                //Adding the new tag to the discovery results
+                let discoveryResults = document.getElementById('discoveryResults');
+                let tag = document.createElement('li');
+                tag.textContent = `ID: ${data.id} , 
+                ${data.name} (${data.location.latitude}, 
+                ${data.location.longitude}) ${data.hashtag}`;
+                discoveryResults.appendChild(tag);
+            }
+        )
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});
+
+
+discoveryFilterForm.addEventListener('submit', function(event){
+    event.preventDefault(); // Prevent the default form submission
+
+    console.log("discoveryFilterForm eventListener submit");
+
+    //Get formula data
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+    const searchterm = document.getElementById('search').value;
+
+    let params = new URLSearchParams({
+        searchterm: searchterm,
+        latitude: latitude,
+        longitude: longitude,
+        radius: 10
+    });
+
+    fetch(`/api/geotags?${params}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('API response:', data);
+            //Update the map with the search results
+            console.log("latitude: " + latitude);
+            console.log("longitude: " + longitude);
+            manager.updateMarkers(latitude, longitude, data);
+
+            //Update the discovery results
+            let discoveryResults = document.getElementById('discoveryResults');
+            discoveryResults.replaceChildren();
+            for (const tag of data) {
+                let tagElement = document.createElement('li');
+                tagElement.textContent =
+                    `${tag.name} (${tag.location.latitude},
+                    ${tag.location.longitude}) ${tag.hashtag}`;
+                discoveryResults.appendChild(tagElement);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOMContentLoaded");
     updateLocation();
-    console.log("Location updated");
 });
