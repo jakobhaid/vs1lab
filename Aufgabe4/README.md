@@ -117,7 +117,7 @@ Zur Übersicht folgen noch mal alle Anforderungen in kompakter Form als Checklis
 ### 1. Teilaufgabe: Server-Erweiterung
 
 - [ ] Neue **Routen** realisieren (`./routers/index.js`)
-  - [ ] GET `/api/geotags`
+  - [x] GET `/api/geotags`
   - [ ] POST `/api/geotags`
   - [ ] GET `/api/geotags/:id`
   - [ ] PUT `/api/geotags/:id`
