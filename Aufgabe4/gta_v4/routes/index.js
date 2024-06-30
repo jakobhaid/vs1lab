@@ -9,6 +9,7 @@
 //Define module dependencies.
 const express = require('express');
 const router = express.Router();
+const Location = require('../models/Location');
 
 /**
 * The module "geotag" exports a class GeoTagStore. 
