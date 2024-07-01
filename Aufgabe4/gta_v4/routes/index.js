@@ -64,31 +64,6 @@ router.post('/discovery', (req,res) => {
 * If 'latitude' and 'longitude' are available, it will be further filtered based on radius.
 */
 
-/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-/* router.get('/api/geotags', (req, res) => {
-  let resBody;
-
-  if (req.query.latitude == null || req.query.longitude == null) {
-      res.status(422);
-      res.send();
-  }
-
-  const lat = +req.query.latitude;
-  const lon = +req.query.longitude;
-  const rad = req.query.rad !== undefined ? +req.query.rad : 25;
-
-  console.log(req.query.search);
-
-  if (req.query.search) {
-      resBody = tagStore.searchNearbyGeoTags(lat, lon, rad, req.query.search);
-  } else {
-      resBody = tagStore.getNearbyGeoTags(lat, lon, rad);
-  }
-
-  res.send(resBody);
-}) */
-/////////////////////////////// Mein Code Ende
-
 router.get('/api/geotags', (req, res) => {
   console.log("router.post /api/geotags GET aufgerufen");
   const { searchterm, latitude, longitude, radius } = req.query;
@@ -113,17 +88,6 @@ router.get('/api/geotags', (req, res) => {
 * The URL of the new resource is returned in the header as a response.
 * The new resource is rendered as JSON in the response.
 */
-
-/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-/* router.post('/api/geotags', (req, res) => {
-
-  tagStore.addGeoTag(req.body['tagName'], req.body['lat'], req.body['long'], req.body['tag']);
-  let resBody = tagStore.findByName(req.body['tagName']);
-  res.location(`/api/geotags/${req.body['tagName']}`);
-  res.status(201);
-  res.send(resBody);
-}) */
-/////////////////////////////// Mein Code Ende
 
 router.post('/api/geotags', (req, res) => {
   console.log("router.post /api/geotags POST aufgerufen");
@@ -151,12 +115,6 @@ router.post('/api/geotags', (req, res) => {
 *
 * The requested tag is rendered as JSON in the response.
 */
-
-/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-/* router.get('/api/geotags/:id', (req, res) => {
-  res.send(tagStore.findByName(req.params.id));
-}) */
-/////////////////////////////// Mein Code Ende
 
 router.get('/api/geotags/:id', (req, res) => {
   console.log("router.post /api/geotags/:id GET aufgerufen");
@@ -186,13 +144,6 @@ router.get('/api/geotags/:id', (req, res) => {
 * Changes the tag with the corresponding ID to the sent value.
 * The updated resource is rendered as JSON in the response. 
 */
-
-/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-/* router.put('/api/geotags/:id', (req, res) => {
-  const resBody = tagStore.updateTag(req.params.id, req.body);
-  res.send(resBody);
-}) */
-/////////////////////////////// Mein Code Ende
 
 router.put('/api/geotags/:id', (req, res) => {
   console.log("router.post /api/geotags/:id PUT aufgerufen");
@@ -227,14 +178,6 @@ router.put('/api/geotags/:id', (req, res) => {
 * The deleted resource is rendered as JSON in the response.
 */
 
-/////////////////////////////// Mein Code (sponsored by ChatGPT and Google)
-/* router.delete('/api/geotags/:id', (req, res) => {
-  const resBody = tagStore.findByName(req.params.id);
-  tagStore.removeGeoTag(req.params.id);
-  res.send(resBody);
-}) */
-/////////////////////////////// Mein Code Ende
-
 router.delete('/api/geotags/:id', (req, res) => {
   console.log("router.post /api/geotags/:id DELETE aufgerufen");
   const { id } = req.params;
@@ -247,5 +190,6 @@ router.delete('/api/geotags/:id', (req, res) => {
 
   res.status(201).json(deletedTag);
 });
+//fetch('http://localhost:3000/api/geotags/0', {method: 'DELETE'}).then(response => response.json());
 
 module.exports = router;

@@ -43,7 +43,7 @@ function updateMap(locationHelper) {
 
     manager.initMap(locationHelper.latitude, locationHelper.longitude);
     let currentTags = getAllTagsInDocument();
-    console.log(currentTags);
+    // console.log(currentTags);
     manager.updateMarkers(locationHelper.latitude, locationHelper.longitude, currentTags);
 
     const oldImage = document.getElementById('mapView');
@@ -83,7 +83,7 @@ function getAllTagsInDocument() {
 tagForm.addEventListener('submit', function(event){
     event.preventDefault(); // Prevent the default form submission
 
-    console.log("tagForm eventListener submit");
+    // console.log("tagForm eventListener submit");
 
     //Get formula data
     const latitude = document.getElementById('latitude').value;
@@ -136,7 +136,7 @@ tagForm.addEventListener('submit', function(event){
 discoveryFilterForm.addEventListener('submit', function(event){
     event.preventDefault(); // Prevent the default form submission
 
-    console.log("discoveryFilterForm eventListener submit");
+    // console.log("discoveryFilterForm eventListener submit");
 
     //Get formula data
     const latitude = document.getElementById('latitude').value;

@@ -28,13 +28,12 @@ const Location = require('./Location');
  */
 class InMemoryGeoTagStore{
 
-    // TODO: ... your code here ...
-     #privateGeoTag = [];
-     #currentId = 0;
+    #privateGeoTag = [];
+    #currentId = 0;
 
     constructor() {
         this.fillStoreWithExamples();
-        console.log(this.#privateGeoTag);
+        // console.log(this.#privateGeoTag);
     }
 
     addGeoTag(geoTag) {
@@ -52,12 +51,10 @@ class InMemoryGeoTagStore{
     }
 
     getNearbyGeoTags(latitude, longitude, radius){
-        return this.#privateGeoTag.filter(function (tag) {                  //Filter Methode, führt Fkt aus und geht für
-            // jeden geo Tag in #privateGeoTag durch und
-            // erstellt neuen Array nur mit elementen für die Bedingung true ist
-           console.log("tag: " + tag);
-           console.log("tag.latitude: " + tag.location.latitude);
-           console.log("tag.longitude: " + tag.location.longitude);
+        return this.#privateGeoTag.filter(function (tag) {
+            // console.log("tag: " + tag);
+            // console.log("tag.latitude: " + tag.location.latitude);
+            // console.log("tag.longitude: " + tag.location.longitude);
             const distance = Math.sqrt(Math.pow(tag.location.latitude - latitude, 2) + Math.pow(tag.location.longitude - longitude, 2));
             return distance <= radius;
         });

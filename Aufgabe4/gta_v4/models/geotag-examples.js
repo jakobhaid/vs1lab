@@ -27,12 +27,11 @@ class GeoTagExamples {
             ['Building A', 49.015738, 8.391619, '#campus'],
             ['Building B', 49.016843, 8.391372, '#campus'],
             ['Building K', 49.013190, 8.392090, '#campus'],
-            /* ['London', 51.5074, -0.1278, '#city'],
             ['London', 51.5074, -0.1278, '#city'],
             ['New York City', 40.7128, -74.0060, '#city'],
             ['Paris', 48.8566, 2.3522, '#city'],
             ['Tokyo', 35.6895, 139.6917, '#city'],
-            ['Rome', 41.9028, 12.4964, '#city'] */
+            ['Rome', 41.9028, 12.4964, '#city']
         ];
     }
 }
